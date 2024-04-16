@@ -1,0 +1,15 @@
+.start-button{
+    background-color: #C0C0C0;
+    border: none;
+    height: 100%;
+    padding: 0 12px;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.start-button:hover{
+    background-color: #9e9d9d;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}

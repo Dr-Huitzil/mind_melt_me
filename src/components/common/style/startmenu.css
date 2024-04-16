@@ -1,0 +1,30 @@
+.start-menu {
+    position: fixed;
+    left: 0;
+    bottom: 40px; /* Height of taskbar */
+    width: 300px; /* Width of the Start Menu */
+    background-color: #C0C0C0; /* Same as taskbar */
+    border: 1px solid #000;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); /* Optional: adds some depth */
+  }
+  
+  .menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu-list li {
+    padding: 5px 20px;
+    border-bottom: 1px solid #000; /* Separators between items */
+    cursor: pointer;
+  }
+  
+  .menu-list li.menu-separator {
+    border-bottom: none;
+  }
+  
+  .menu-list li:hover {
+    background-color: #B0B0B0; /* Item hover state */
+  }
+  
