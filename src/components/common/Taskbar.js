@@ -3,6 +3,7 @@ import './style/taskbar.css';
 
 import StartButton from "../misc/startButton";
 import StartMenu from "./StartMenu";
+import TimeDisplay from "../misc/timeDisplay";
 
 export default function Taskbar({ children }) {
     const [startMenuVisible, setStartMenuVisible] = React.useState(false);
@@ -12,6 +13,7 @@ export default function Taskbar({ children }) {
         <div className="taskbar">
             <StartButton toggleStartMenu={toggleStartMenu} />
             {startMenuVisible && <StartMenu />}
+            <TimeDisplay />
         </div>
     );
 };

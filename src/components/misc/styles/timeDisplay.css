@@ -1,0 +1,9 @@
+/* TimeDisplay.css */
+.time-display {
+    color: #fff; /* Set the text color as needed */
+    font-family: 'MS Sans Serif', sans-serif; /* Windows ME style font */
+    font-size: 16px; /* Adjust to match the taskbar size */
+    margin-right: 25px; /* Adjust to match the taskbar size */
+    padding-right: 25px; /* Adjust to match the taskbar size */
+  }
+  
