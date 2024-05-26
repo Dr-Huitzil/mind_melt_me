@@ -8,21 +8,11 @@ const StartMenu = ({ onClose }) => {
                 <div className='start-text-rotate'> Mind Melt OS </div>
             </div>
             <div className="start-menu-text">
-                <a className="menu-child" href="#!" onClick={onClose}>Mind Melt</a>
+                <a className="menu-child" href="https://open.spotify.com/show/24egMNc90Wfn7rr5KWzlj1?si=0d2738b768944b99" target="_blank" rel="noopener noreferrer">Spotify</a>
                 <hr />
-                <a className="menu-child" href="#!" onClick={onClose}>Programs</a>
+                <a className="menu-child" href="https://instagram.com/mind.melt_" target="_blank" rel="noopener noreferrer">Instagram</a>
                 <hr />
-                <a className="menu-child" href="#!" onClick={onClose}>Documents</a>
-                <hr />
-                <a className="menu-child" href="#!" onClick={onClose}>Settings</a>
-                <hr />
-                <a className="menu-child" href="#!" onClick={onClose}>Links</a>
-                <hr />
-                <a className="menu-child" href="#!" onClick={onClose}>Sign In</a>
-                <hr />
-                <a className="menu-child" href="#!" onClick={onClose}>Log Off</a>
-                <hr />
-                <a className="menu-child" href="#!" onClick={onClose}>Shut Down</a>
+                <a className="menu-child" href="https://mindmelt.shop/" target="_blank" rel="noopener noreferrer">Shop</a>
             </div>
         </div>
     );

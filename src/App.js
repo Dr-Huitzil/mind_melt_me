@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Preloader from './components/Prelaoder';
 import Desktop from './components/Desktop';
 import StartMenu from './components/StartMenu';
-
-import './styles/global.css';
 import Taskbar from './components/Taskbar';
+import './styles/global.css';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -21,13 +20,13 @@ const App = () => {
 
   const toggleStartMenu = () => {
     console.log('toggle start menu');
-    setStartMenuVisible(!startMenuVisible)
+    setStartMenuVisible(!startMenuVisible);
   };
 
   const closeStartMenu = () => {
     console.log('close start menu');
     setStartMenuVisible(false);
-  }
+  };
 
   const handleIconClick = (appName) => {
     if (!runningApps.some(app => app.name === appName)) {
@@ -35,16 +34,17 @@ const App = () => {
     }
   };
 
-
   return (
     <div>
       {loading && <Preloader />}
       {!loading && (
         <div>
-          <Desktop />
-          {startMenuVisible && <StartMenu onClose={closeStartMenu} />}
+          <Desktop onIconClick={handleIconClick} />
+          <div className={`start-menu-wrapper ${startMenuVisible ? 'visible' : ''}`}>
+            <StartMenu onClose={closeStartMenu} />
+          </div>
           <Taskbar runningApps={runningApps} />
-          <button className='start-button' onClick={toggleStartMenu}>
+          <button className="start-button" onClick={toggleStartMenu}>
             Start
           </button>
         </div>
