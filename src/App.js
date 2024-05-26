@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import Preloader from './components/Prelaoder';
+import Preloader from './components/Prelaoder'
 import Desktop from './components/Desktop';
 import StartMenu from './components/StartMenu';
 import Taskbar from './components/Taskbar';
-import Window from './components/Window';
+import AboutWindow from './components/windows/AboutWindow';
+// Import other windows as needed
+
 import './styles/global.css';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [startMenuVisible, setStartMenuVisible] = useState(false);
   const [runningApps, setRunningApps] = useState([]);
-  const [openWindows, setOpenWindows] = useState([]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,24 +22,32 @@ const App = () => {
   }, []);
 
   const toggleStartMenu = () => {
-    console.log('toggle start menu');
     setStartMenuVisible(!startMenuVisible);
   };
 
   const closeStartMenu = () => {
-    console.log('close start menu');
     setStartMenuVisible(false);
   };
 
   const handleIconClick = (appName) => {
     if (!runningApps.some(app => app.name === appName)) {
-      setRunningApps([...runningApps, { id: runningApps.length + 1, name: appName, action: () => alert(`${appName} is running`) }]);
+      setRunningApps([...runningApps, { id: runningApps.length + 1, name: appName }]);
     }
   };
 
-  const handleCloseWindow = (id) => {
-    setOpenWindows(openWindows.filter(window => window.id !== id));
-  }
+  const closeApp = (appId) => {
+    setRunningApps(runningApps.filter(app => app.id !== appId));
+  };
+
+  const renderWindow = (app) => {
+    switch (app.name) {
+      case 'about':
+        return <AboutWindow key={app.id} onClose={() => closeApp(app.id)} />;
+      // Add cases for other windows
+      default:
+        return null;
+    }
+  };
 
   return (
     <div>
@@ -50,19 +59,10 @@ const App = () => {
             <StartMenu onClose={closeStartMenu} />
           </div>
           <Taskbar runningApps={runningApps} />
-          <button className="start-button" onClick={toggleStartMenu}>
+          <button className='start-button' onClick={toggleStartMenu}>
             Start
           </button>
-          {openWindows.map(window => (
-            <Window
-              key={window.id}
-              id={window.id}
-              title={window.name}
-              onClose={() => handleCloseWindow(window.id)}
-            >
-              <div> This is the {window.title} window</div>
-            </Window>
-          ))}
+          {runningApps.map(app => renderWindow(app))}
         </div>
       )}
     </div>
