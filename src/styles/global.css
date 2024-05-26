@@ -1,0 +1,52 @@
+/* src/styles/global.css */
+:root {
+    --light-green: #cfe1d6;
+    --green: #2b7d4c;
+    --dark-green: #123721;
+    --light-blue: #8db1d4;
+    --blue: #034b92;
+    --dark-blue: #01305f;
+    --light-red: #efb5ab;
+    --red: #e03c20;
+    --dark-red: #782010;
+    --light-yellow: #f9f6e7;
+    --yellow: #ffda27;
+    --dark-yellow: #b69d20;
+  }
+  
+  @font-face {
+    font-family: 'Kosugi Maru';
+    src: url(../assets/fonts/KosugiMaru-Regular.ttf);
+  }
+
+  
+  @font-face {
+    font-family: 'Instrument Serif';
+    src: url(../assets/fonts/InstrumentSerif-Regular.ttf); /* Replace with actual path */
+  }
+  
+  * {
+    font-family: 'Kosugi Maru', sans-serif;
+  }
+  
+  body {
+    margin: 0;
+  }
+
+  /* styles for the start button */
+
+  .start-button{
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #ffda27;
+    color: black;
+    border : none;
+    cursor: pointer;
+  }
+
+  .start-button:hover{
+    background-color: #e0c21f;
+  }
+  

@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import Preloader from './components/Prelaoder';
+import './styles/global.css';
+import Desktop from './components/Desktop';
+import StartMenu from './components/StartMenu';
 
-function App() {
+const App = () => {
+  const [loading, setLoading] = useState(true);
+  const [startMenuVisible, setStartMenuVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const toggleStartMenu = () => {
+    setStartMenuVisible(!startMenuVisible)
+  };
+
+  const closeStartMenu = () => {
+    setStartMenuVisible(false);
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {loading && <Preloader />}
+      {!loading && (
+        <div>
+          <Desktop />
+          {startMenuVisible && <StartMenu onClose={closeStartMenu} />}
+          <button className='start-button' onClick={toggleStartMenu}>
+            Start
+          </button>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;

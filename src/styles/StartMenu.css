@@ -1,0 +1,46 @@
+/* src/styles/StartMenu.css */
+.start-menu {
+    width: 200px;
+    position: fixed;
+    bottom: 30px;
+    left: 10px;
+    background-color: var(--light-yellow);
+    z-index: 9999;
+    display: none; /* Initially hidden, will be toggled on button click */
+  }
+  
+  .start-strip {
+    background-color: navy;
+    width: 25px;
+    height: 220px;
+    float: left;
+    margin: 1px;
+    padding: 5px;
+  }
+  
+  .start-text-rotate {
+    transform: rotate(180deg);
+    color: white;
+    font-size: 20px;
+    text-align: left;
+    writing-mode: vertical-rl;
+  }
+  
+  .start-menu-text {
+    overflow: hidden;
+    line-height: 17px;
+    padding: 10px;
+  }
+  
+  .menu-child {
+    display: block;
+    padding: 5px 10px;
+    color: black;
+    text-decoration: none;
+  }
+  
+  .menu-child:hover {
+    background-color: navy;
+    color: white;
+  }
+  
