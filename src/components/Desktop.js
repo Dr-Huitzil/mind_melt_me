@@ -6,12 +6,12 @@ const icons = [
     { id: 1, src: meIcon, name: 'My Icon', action: () => alert('My Icon Clicked') },
 ];
 
-const Desktop = () => {
+const Desktop = ({ onIconClick }) => {
     return (
         <div className='desktop-bg'>
             <div className='desk-icons-wrapper'>
                 {icons.map(icon => (
-                    <div key={icon.id} className='desktop-icon' onClick={icon.action}>
+                    <div key={icon.id} className='desktop-icon' onClick={() => onIconClick(icon)}>
                         <img src={icon.src} alt={icon.name} />
                         <span className='icon-text'>{icon.name}</span>
                     </div>

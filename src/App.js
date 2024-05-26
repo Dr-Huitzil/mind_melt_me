@@ -20,10 +20,12 @@ const App = () => {
   }, []);
 
   const toggleStartMenu = () => {
+    console.log('toggle start menu');
     setStartMenuVisible(!startMenuVisible)
   };
 
   const closeStartMenu = () => {
+    console.log('close start menu');
     setStartMenuVisible(false);
   }
 
