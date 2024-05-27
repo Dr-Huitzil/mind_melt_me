@@ -68,4 +68,5 @@ body {
   border: 1px solid #002244; /* Adjust border color if necessary */
   background-color: #003366; /* Adjust background color if necessary */
   text-align: center;
+  margin-right: 20px; /* Adjust this value to move the time closer to the right */
 }
