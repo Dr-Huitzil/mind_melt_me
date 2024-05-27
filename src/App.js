@@ -1,31 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import Preloader from './components/Prelaoder';
+import Preloader from './components/Prelaoder'
 import Desktop from './components/Desktop';
 import StartMenu from './components/StartMenu';
+import './styles/global.css';
 import Taskbar from './components/Taskbar';
 import AboutWindow from './components/windows/AboutWindow';
 import ChatboxWindow from './components/windows/ChatboxWindow';
-import CalculatorWindow from './components/windows/CalculatorWindow'; // Import CalculatorWindow
-import './styles/global.css';
+import CalculatorWindow from './components/windows/CalculatorWindow';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [startMenuVisible, setStartMenuVisible] = useState(false);
-  const [openWindows, setOpenWindows] = useState({
-    about: false,
-    chatbox: false,
-    calculator: false, // Add calculator window state
-    // Add more windows here
-  });
   const [runningApps, setRunningApps] = useState([]);
+  const [isAboutWindowOpen, setAboutWindowOpen] = useState(false);
+  const [isChatboxWindowOpen, setChatboxWindowOpen] = useState(false);
+  const [isCalculatorWindowOpen, setCalculatorWindowOpen] = useState(false);
+  const [isShopWindowOpen, setShopWindowOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 3000);
 
+    // Load state from local storage
+    const savedRunningApps = JSON.parse(localStorage.getItem('runningApps')) || [];
+    setRunningApps(savedRunningApps);
+
+    setAboutWindowOpen(localStorage.getItem('isAboutWindowOpen') === 'true');
+    setChatboxWindowOpen(localStorage.getItem('isChatboxWindowOpen') === 'true');
+    setCalculatorWindowOpen(localStorage.getItem('isCalculatorWindowOpen') === 'true');
+    setShopWindowOpen(localStorage.getItem('isShopWindowOpen') === 'true');
+
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    // Save state to local storage
+    localStorage.setItem('runningApps', JSON.stringify(runningApps));
+    localStorage.setItem('isAboutWindowOpen', isAboutWindowOpen);
+    localStorage.setItem('isChatboxWindowOpen', isChatboxWindowOpen);
+    localStorage.setItem('isCalculatorWindowOpen', isCalculatorWindowOpen);
+    localStorage.setItem('isShopWindowOpen', isShopWindowOpen);
+  }, [runningApps, isAboutWindowOpen, isChatboxWindowOpen, isCalculatorWindowOpen, isShopWindowOpen]);
 
   const toggleStartMenu = () => {
     setStartMenuVisible(!startMenuVisible);
@@ -35,22 +51,74 @@ const App = () => {
     setStartMenuVisible(false);
   };
 
+  const handleOpenAboutWindow = () => {
+    setAboutWindowOpen(true);
+    addRunningApp('About');
+  };
+
+  const handleCloseAboutWindow = () => {
+    setAboutWindowOpen(false);
+    removeRunningApp('About');
+  };
+
+  const handleOpenChatboxWindow = () => {
+    setChatboxWindowOpen(true);
+    addRunningApp('Chatbox');
+  };
+
+  const handleCloseChatboxWindow = () => {
+    setChatboxWindowOpen(false);
+    removeRunningApp('Chatbox');
+  };
+
+  const handleOpenCalculatorWindow = () => {
+    setCalculatorWindowOpen(true);
+    addRunningApp('Calculator');
+  };
+
+  const handleCloseCalculatorWindow = () => {
+    setCalculatorWindowOpen(false);
+    removeRunningApp('Calculator');
+  };
+
+  const handleOpenShopWindow = () => {
+    setShopWindowOpen(true);
+    addRunningApp('Shop');
+  };
+
+  const handleCloseShopWindow = () => {
+    setShopWindowOpen(false);
+    removeRunningApp('Shop');
+  };
+
   const handleIconClick = (appName) => {
-    setOpenWindows({ ...openWindows, [appName]: true });
-    if (!runningApps.some(app => app.name === appName)) {
-      setRunningApps([...runningApps, { id: runningApps.length, name: appName, active: true }])
+    switch (appName) {
+      case 'about':
+        handleOpenAboutWindow();
+        break;
+      case 'chat':
+        handleOpenChatboxWindow();
+        break;
+      case 'calculator':
+        handleOpenCalculatorWindow();
+        break;
+      case 'shop':
+        handleOpenShopWindow();
+        break;
+      default:
+        break;
     }
   };
 
-  const closeWindow = (appName) => {
-    setOpenWindows({ ...openWindows, [appName]: false });
-    setRunningApps(runningApps.filter(app => app.name !== appName));
+  const addRunningApp = (appName) => {
+    if (!runningApps.includes(appName)) {
+      setRunningApps([...runningApps, appName]);
+    }
   };
 
-  const handleAppClick = (appName) => {
-    setOpenWindows({ ...openWindows, [appName]: true });
-    setRunningApps(runningApps.map(app => app.name === appName ? { ...app, active: true } : app));
-  }
+  const removeRunningApp = (appName) => {
+    setRunningApps(runningApps.filter(app => app !== appName));
+  };
 
   return (
     <div>
@@ -61,15 +129,13 @@ const App = () => {
           <div className={`start-menu-wrapper ${startMenuVisible ? 'visible' : ''}`}>
             <StartMenu onClose={closeStartMenu} />
           </div>
-          <Taskbar runningApps={runningApps} onAppClick={handleAppClick} />
+          <Taskbar runningApps={runningApps} />
           <button className='start-button' onClick={toggleStartMenu}>
             Start
           </button>
-
-          {openWindows.about && <AboutWindow onClose={() => closeWindow('about')} />}
-          {openWindows.chatbox && <ChatboxWindow onClose={() => closeWindow('chatbox')} />}
-          {openWindows.calculator && <CalculatorWindow onClose={() => closeWindow('calculator')} />}
-          {/* Add more windows here */}
+          {isAboutWindowOpen && <AboutWindow onClose={handleCloseAboutWindow} />}
+          {isChatboxWindowOpen && <ChatboxWindow onClose={handleCloseChatboxWindow} />}
+          {isCalculatorWindowOpen && <CalculatorWindow onClose={handleCloseCalculatorWindow} />}
         </div>
       )}
     </div>
