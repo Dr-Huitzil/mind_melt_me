@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 import '../../styles/Window.css';
 
 const AboutWindow = ({ onClose }) => {
+    const [initialPosition, setInitialPosition] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        const windowHeight = window.innerHeight;
+        const windowWidth = window.innerWidth;
+        const boxHeight = 300;
+        const boxWidth = 400;
+        const x = (windowWidth - boxWidth) / 2;
+        const y = (windowHeight - boxHeight) / 2;
+        setInitialPosition({ x, y });
+
+    }, []);
+
     return (
-        <Draggable defaultPosition={{ x: 100, y: 100 }}>
-            <ResizableBox width={400} height={300} minConstraints={[300, 200]} maxConstraints={[600, 400]}>
+        <Draggable handle='.window-title-bar' defaultPosition={initialPosition}>
+            <ResizableBox
+                width={400}
+                height={300}
+                minConstraints={[300, 200]}
+                maxConstraints={[600, 400]}
+            >
                 <div className='window'>
                     <div className='window-title-bar'>
                         <span className='window-title'>About</span>
