@@ -34,6 +34,15 @@
   overflow: auto;
 }
 
+
+.window .active {
+  border: 2px solid #0000FF;
+}
+
+.window .inactive {
+  border: 2px solid #CCCCCC;
+}
+
 .resizable-box {
   position: absolute;
   top: 0;

@@ -17,6 +17,7 @@ const App = () => {
     calculator: false, // Add calculator window state
     // Add more windows here
   });
+  const [runningApps, setRunningApps] = useState([]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,11 +37,20 @@ const App = () => {
 
   const handleIconClick = (appName) => {
     setOpenWindows({ ...openWindows, [appName]: true });
+    if (!runningApps.some(app => app.name === appName)) {
+      setRunningApps([...runningApps, { id: runningApps.length, name: appName, active: true }])
+    }
   };
 
   const closeWindow = (appName) => {
     setOpenWindows({ ...openWindows, [appName]: false });
+    setRunningApps(runningApps.filter(app => app.name !== appName));
   };
+
+  const handleAppClick = (appName) => {
+    setOpenWindows({ ...openWindows, [appName]: true });
+    setRunningApps(runningApps.map(app => app.name === appName ? { ...app, active: true } : app));
+  }
 
   return (
     <div>
@@ -51,7 +61,7 @@ const App = () => {
           <div className={`start-menu-wrapper ${startMenuVisible ? 'visible' : ''}`}>
             <StartMenu onClose={closeStartMenu} />
           </div>
-          <Taskbar runningApps={[]} />
+          <Taskbar runningApps={runningApps} onAppClick={handleAppClick} />
           <button className='start-button' onClick={toggleStartMenu}>
             Start
           </button>

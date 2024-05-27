@@ -6,6 +6,8 @@ import '../../styles/Window.css';
 
 const AboutWindow = ({ onClose }) => {
     const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
+    const [windowSize, setWindowSize] = useState({ width: 400, height: 300 });
+    const [isMaximized, setIsMaximized] = useState(false);
     const windowRef = useRef(null);
 
     useEffect(() => {
@@ -19,12 +21,27 @@ const AboutWindow = ({ onClose }) => {
         setWindowPosition({ x, y });
     }, []);
 
+    const handleMinimize = () => {
+        setWindowSize({ width: 200, height: 50 });
+    };
+
+    const handleMaximize = () => {
+        if (isMaximized) {
+            setWindowSize({ width: 400, height: 300 });
+            setIsMaximized(false);
+        } else {
+            setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+            setWindowPosition({ x: 0, y: 0 });
+            setIsMaximized(true);
+        }
+    };
+
     return (
         <Draggable handle=".window-title-bar">
             <div style={{ position: 'absolute', left: windowPosition.x, top: windowPosition.y }}>
                 <ResizableBox
-                    width={400}
-                    height={300}
+                    width={windowSize.width}
+                    height={windowSize.height}
                     minConstraints={[300, 200]}
                     maxConstraints={[600, 400]}
                     className="resizable-box"
@@ -32,6 +49,10 @@ const AboutWindow = ({ onClose }) => {
                     <div className="window" ref={windowRef}>
                         <div className="window-title-bar">
                             <span className="window-title">About</span>
+                            <button className='window-minimize-button' onClick={handleMinimize}>_</button>
+                            <button className='window-maximize-button' onClick={handleMaximize}>
+                                {isMaximized ? '[]' : '[][]'}
+                            </button>
                             <button className="window-close-button" onClick={onClose}>X</button>
                         </div>
                         <div className="window-content">
