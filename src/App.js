@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Preloader from './components/Prelaoder'
+import Preloader from './components/Prelaoder';
 import Desktop from './components/Desktop';
 import StartMenu from './components/StartMenu';
 import './styles/global.css';
@@ -22,7 +22,6 @@ const App = () => {
       setLoading(false);
     }, 3000);
 
-    // Load state from local storage
     const savedRunningApps = JSON.parse(localStorage.getItem('runningApps')) || [];
     setRunningApps(savedRunningApps);
 
@@ -35,7 +34,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    // Save state to local storage
     localStorage.setItem('runningApps', JSON.stringify(runningApps));
     localStorage.setItem('isAboutWindowOpen', isAboutWindowOpen);
     localStorage.setItem('isChatboxWindowOpen', isChatboxWindowOpen);
@@ -120,6 +118,25 @@ const App = () => {
     setRunningApps(runningApps.filter(app => app !== appName));
   };
 
+  const handleTaskbarAppClick = (appName) => {
+    switch (appName) {
+      case 'About':
+        handleOpenAboutWindow();
+        break;
+      case 'Chatbox':
+        handleOpenChatboxWindow();
+        break;
+      case 'Calculator':
+        handleOpenCalculatorWindow();
+        break;
+      case 'Shop':
+        handleOpenShopWindow();
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div>
       {loading && <Preloader />}
@@ -129,7 +146,7 @@ const App = () => {
           <div className={`start-menu-wrapper ${startMenuVisible ? 'visible' : ''}`}>
             <StartMenu onClose={closeStartMenu} />
           </div>
-          <Taskbar runningApps={runningApps} />
+          <Taskbar runningApps={runningApps} onAppClick={handleTaskbarAppClick} />
           <button className='start-button' onClick={toggleStartMenu}>
             Start
           </button>

@@ -1,23 +1,33 @@
+// Taskbar.js
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../styles/Taskbar.css';
 
 const Taskbar = ({ runningApps, onAppClick }) => {
     return (
-        <div className='taskbar'>
-            <div className='bar-button'>
+        <div className="taskbar">
+            <button className='start-button' onClick={onAppClick}>
+                Start
+            </button>
+            <div className="bar-buttons">
                 {runningApps.map(app => (
                     <button
-                        key={app.id}
-                        className={`bar-button ${app.active ? 'active' : ''}`}
-                        onClick={() => onAppClick(app.id)}
+                        key={app}
+                        className="bar-button"
+                        onClick={() => onAppClick(app)}
                     >
-                        {app.name}
+                        {app}
                     </button>
                 ))}
             </div>
-            <span id='clock'>{new Date().toLocaleDateString()}</span>
+            <div className="clock">{new Date().toLocaleTimeString()}</div>
         </div>
     );
+};
+
+Taskbar.propTypes = {
+    runningApps: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onAppClick: PropTypes.func.isRequired,
 };
 
 export default Taskbar;
