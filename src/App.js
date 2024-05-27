@@ -84,10 +84,10 @@ const App = () => {
     addRunningApp('Shop');
   };
 
-  const handleCloseShopWindow = () => {
-    setShopWindowOpen(false);
-    removeRunningApp('Shop');
-  };
+  // const handleCloseShopWindow = () => {
+  //   setShopWindowOpen(false);
+  //   removeRunningApp('Shop');
+  // };
 
   const handleIconClick = (appName) => {
     switch (appName) {
