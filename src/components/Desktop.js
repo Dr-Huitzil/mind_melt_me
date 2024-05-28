@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import '../styles/Desktop.css';
 
 const Desktop = ({ onIconClick }) => {
-
     const [contextMenu, setContextMenu] = useState({ visible: false, position: { x: 0, y: 0 } });
 
     const handleRightClick = (event) => {
-        event.preventDefault()
+        event.preventDefault();
         setContextMenu({ visible: true, position: { x: event.clientX, y: event.clientY } });
     };
 
     const handleCloseContextMenu = () => {
         setContextMenu({ visible: false, position: { x: 0, y: 0 } });
-    }
+    };
 
     const handleNewShortcut = () => {
         handleCloseContextMenu();
         console.log('New Shortcut');
-    }
+    };
+
     const icons = [
         { id: 'about', name: 'About', icon: require('../assets/desktop-icons/me-icon.png') },
         { id: 'chat', name: 'Chatbox', icon: require('../assets/desktop-icons/kirby1.jpg') },
