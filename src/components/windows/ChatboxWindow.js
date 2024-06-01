@@ -1,3 +1,4 @@
+// src/components/windows/ChatboxWindow.js
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
@@ -28,7 +29,9 @@ const ChatboxWindow = ({ onClose }) => {
                     <div className="window">
                         <div className="window-title-bar">
                             <span className="window-title">Chatbox</span>
-                            <button className="window-close-button" onClick={onClose}>X</button>
+                            <div>
+                                <button className="window-close-button" onClick={onClose}>X</button>
+                            </div>
                         </div>
                         <div className="window-content">
                             <div className="chatbox-messages">

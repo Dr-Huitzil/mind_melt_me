@@ -1,3 +1,4 @@
+// src/components/windows/AboutWindow.js
 import React, { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
@@ -43,17 +44,17 @@ const AboutWindow = ({ onClose }) => {
                     width={windowSize.width}
                     height={windowSize.height}
                     minConstraints={[300, 200]}
-                    maxConstraints={[600, 400]}
+                    maxConstraints={[window.innerWidth, window.innerHeight]}
                     className="resizable-box"
                 >
                     <div className="window" ref={windowRef}>
                         <div className="window-title-bar">
                             <span className="window-title">About</span>
-                            <button className='window-minimize-button' onClick={handleMinimize}>_</button>
-                            <button className='window-maximize-button' onClick={handleMaximize}>
-                                {isMaximized ? '[]' : '[][]'}
-                            </button>
-                            <button className="window-close-button" onClick={onClose}>X</button>
+                            <div>
+                                <button className="window-minimize-button" onClick={handleMinimize}>_</button>
+                                <button className="window-maximize-button" onClick={handleMaximize}>{isMaximized ? '[]' : '[][]'}</button>
+                                <button className="window-close-button" onClick={onClose}>X</button>
+                            </div>
                         </div>
                         <div className="window-content">
                             <h2>Mind Melt</h2>

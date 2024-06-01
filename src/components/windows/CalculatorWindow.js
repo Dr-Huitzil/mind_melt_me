@@ -1,3 +1,4 @@
+// src/components/windows/CalculatorWindow.js
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
@@ -38,7 +39,9 @@ const CalculatorWindow = ({ onClose }) => {
                     <div className="window">
                         <div className="window-title-bar">
                             <span className="window-title">Calculator</span>
-                            <button className="window-close-button" onClick={onClose}>X</button>
+                            <div>
+                                <button className="window-close-button" onClick={onClose}>X</button>
+                            </div>
                         </div>
                         <div className="window-content">
                             <div className="calculator-display">

@@ -1,18 +1,30 @@
 /* src/styles/global.css */
 :root {
-    --light-green: #cfe1d6;
-    --green: #2b7d4c;
-    --dark-green: #123721;
-    --light-blue: #8db1d4;
-    --blue: #034b92;
-    --dark-blue: #01305f;
-    --light-red: #efb5ab;
-    --red: #e03c20;
-    --dark-red: #782010;
-    --light-yellow: #f9f6e7;
-    --yellow: #ffda27;
-    --dark-yellow: #b69d20;
-  }
+  --light-green: #cfe1d6;
+  --green: #2b7d4c;
+  --dark-green: #123721;
+  --light-blue: #8db1d4;
+  --blue: #034b92;
+  --dark-blue: #01305f;
+  --light-red: #efb5ab;
+  --red: #e03c20;
+  --dark-red: #782010;
+  --light-yellow: #f9f6e7;
+  --yellow: #ffda27;
+  --dark-yellow: #b69d20;
+}
+
+
+body {
+  background-color: #4863a0;
+  color: #000;
+  font-family: 'Libre Caslon Condensed', serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
   
   @font-face {
     font-family: 'Kosugi Maru';

@@ -30,13 +30,13 @@ const Taskbar = ({ runningApps, onAppClick }) => {
         <div className="taskbar">
             <div className="taskbar-icons">
                 {runningApps.map((app, index) => (
-                    <div
+                    <button
                         key={index}
-                        className="taskbar-icon"
+                        className={`taskbar-icon ${app.minimized ? '' : 'active'}`}
                         onClick={() => onAppClick(app)}
                     >
                         {app}
-                    </div>
+                    </button>
                 ))}
             </div>
             <div className="taskbar-time" id="clock">
@@ -47,8 +47,14 @@ const Taskbar = ({ runningApps, onAppClick }) => {
 };
 
 Taskbar.propTypes = {
-    runningApps: PropTypes.arrayOf(PropTypes.string).isRequired,
-    onAppClick: PropTypes.func.isRequired,
+    runningApps: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            minimized: PropTypes.bool.isRequired
+        })
+    ).isRequired,
+    onAppClick: PropTypes.func.isRequired
 };
 
 export default Taskbar;
