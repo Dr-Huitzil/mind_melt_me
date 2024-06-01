@@ -7,15 +7,16 @@ import '../../styles/Window.css';
 
 const AboutWindow = ({ onClose }) => {
     const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
-    const [windowSize, setWindowSize] = useState({ width: 400, height: 300 });
+    const [windowSize, setWindowSize] = useState({ width: 600, height: 400 });
     const [isMaximized, setIsMaximized] = useState(false);
+    const [activeTab, setActiveTab] = useState('this-website');
     const windowRef = useRef(null);
 
     useEffect(() => {
         const windowHeight = window.innerHeight;
         const windowWidth = window.innerWidth;
-        const boxHeight = 300;
-        const boxWidth = 400;
+        const boxHeight = 400;
+        const boxWidth = 600;
         const x = (windowWidth - boxWidth) / 2;
         const y = (windowHeight - boxHeight) / 2;
 
@@ -28,7 +29,7 @@ const AboutWindow = ({ onClose }) => {
 
     const handleMaximize = () => {
         if (isMaximized) {
-            setWindowSize({ width: 400, height: 300 });
+            setWindowSize({ width: 600, height: 400 });
             setIsMaximized(false);
         } else {
             setWindowSize({ width: window.innerWidth, height: window.innerHeight });
@@ -37,27 +38,54 @@ const AboutWindow = ({ onClose }) => {
         }
     };
 
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
+    };
+
     return (
         <Draggable handle=".window-title-bar">
             <div style={{ position: 'absolute', left: windowPosition.x, top: windowPosition.y }}>
                 <ResizableBox
                     width={windowSize.width}
                     height={windowSize.height}
-                    minConstraints={[300, 200]}
+                    minConstraints={[400, 300]}
                     maxConstraints={[window.innerWidth, window.innerHeight]}
                     className="resizable-box"
                 >
                     <div className="window" ref={windowRef}>
                         <div className="window-title-bar">
                             <span className="window-title">About</span>
-                            <div>
-                                <button className="window-minimize-button" onClick={handleMinimize}>_</button>
-                                <button className="window-maximize-button" onClick={handleMaximize}>{isMaximized ? '[]' : '[][]'}</button>
-                                <button className="window-close-button" onClick={onClose}>X</button>
+                            <div className="window-buttons">
+                                <button className="window-button" onClick={handleMinimize}>_</button>
+                                <button className="window-button" onClick={handleMaximize}>
+                                    {isMaximized ? (
+                                        <span className="restore-icon"></span>
+                                    ) : (
+                                        <span className="maximize-icon"></span>
+                                    )}
+                                </button>
+                                <button className="window-button" onClick={onClose}>X</button>
                             </div>
                         </div>
-                        <div className="window-content">
-                            <h2>Mind Melt</h2>
+                        <div className="menu-bar">
+                            <span>File</span>
+                            <span>Edit</span>
+                            <span>View</span>
+                        </div>
+                        <div className="address-bar">
+                            <span>Address:</span>
+                            <input type="text" value="https://mindmelt.org/about" readOnly />
+                        </div>
+                        <div className="tabs">
+                            <div className={`tab ${activeTab === 'this-website' ? 'active' : ''}`} onClick={() => handleTabClick('this-website')}>
+                                This Website
+                            </div>
+                            <div className={`tab ${activeTab === 'about-me' ? 'active' : ''}`} onClick={() => handleTabClick('about-me')}>
+                                About Me
+                            </div>
+                        </div>
+                        <div className={`tab-content ${activeTab === 'this-website' ? 'active' : ''}`}>
+                            <h2>Welcome to Mind Melt</h2>
                             <p>
                                 What exactly is Mind Melt? You may have heard of us or seen our stickers scattered
                                 around campus but do you ever question what Mind Melt is supposed to be? Mind Melt is
@@ -68,6 +96,28 @@ const AboutWindow = ({ onClose }) => {
                                 of students that are passionate about music and art and we want to share that passion with
                                 whoever finds us. It all began with music but we are slowly expanding our mind-melting ideas
                                 into the realms of fashion, photography, and many other creative fields.
+
+                                There are features on this website that are inspired by the Windows 95 operating system. Some of the features include:
+                            </p>
+                            <ul>
+                                <li>draggable windows</li>
+                                <li>tabs in the 'About' window</li>
+                                <li>minimizable/maximizable windows</li>
+                                <li>a music player</li>
+                                <li>button along the bottom that corresponds with whether window is active or not</li>
+                                <li>an instagram widget</li>
+                                <li>toggle menu</li>
+                                <li>clock</li>
+                            </ul>
+                        </div>
+                        <div className={`tab-content ${activeTab === 'about-me' ? 'active' : ''}`}>
+                            <h2>About Us</h2>
+                            <img src="./me.jpeg" style={{ width: '230px', float: 'left', borderRadius: '50% 50% 10% 10%', marginRight: '16px' }} alt="Me" />
+                            <p>
+                                Hello!
+                            </p>
+                            <p>
+                                This website was coded, designed and illustrated by Ivan. If you have any questions or would like to collaborate, please feel free to reach out to me at my instagram @prof.quetzal or email me at ialierreyes@gmail.com
                             </p>
                         </div>
                     </div>
