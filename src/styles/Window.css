@@ -137,12 +137,10 @@
 
 .react-resizable-handle {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTAgMGgyMHYyMEgwVjB6Ii8+PC9zdmc+');
   bottom: 0;
   right: 0;
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTEgMWgxNHYxNEgxVjF6Ii8+PC9zdmc+');
-  background-size: cover;
   cursor: se-resize;
-  z-index: 10; /* Ensure it stays above other elements */
 }
