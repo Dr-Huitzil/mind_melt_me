@@ -68,9 +68,9 @@ const AboutWindow = ({ onClose }) => {
                             </div>
                         </div>
                         <div className="menu-bar">
-                            <span>File</span>
-                            <span>Edit</span>
-                            <span>View</span>
+                            <span className="menu-button">File</span>
+                            <span className="menu-button">Edit</span>
+                            <span className="menu-button">View</span>
                         </div>
                         <div className="address-bar">
                             <span>Address:</span>
