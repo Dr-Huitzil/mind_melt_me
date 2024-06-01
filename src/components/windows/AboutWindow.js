@@ -1,4 +1,3 @@
-// src/components/windows/AboutWindow.js
 import React, { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
@@ -50,7 +49,9 @@ const AboutWindow = ({ onClose }) => {
                     height={windowSize.height}
                     minConstraints={[400, 300]}
                     maxConstraints={[window.innerWidth, window.innerHeight]}
-                    className="resizable-box"
+                    handle={
+                        <div className="react-resizable-handle"></div>
+                    }
                 >
                     <div className="window" ref={windowRef}>
                         <div className="window-title-bar">
