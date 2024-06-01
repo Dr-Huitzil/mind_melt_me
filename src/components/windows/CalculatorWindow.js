@@ -7,13 +7,13 @@ import '../../styles/Window.css';
 const CalculatorWindow = ({ onClose }) => {
     const [input, setInput] = useState('');
     const [result, setResult] = useState('');
-    const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
-    const [windowSize, setWindowSize] = useState({ width: 400, height: 300 });
+    const [windowPosition] = useState({ x: 0, y: 0 });
+    const [windowSize] = useState({ width: 400, height: 300 });
 
     const handleButtonClick = (value) => {
         if (value === '=') {
             try {
-                setResult(eval(input));
+                setResult((input));
             } catch {
                 setResult('Error');
             }

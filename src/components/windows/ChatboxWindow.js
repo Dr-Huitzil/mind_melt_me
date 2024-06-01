@@ -7,8 +7,8 @@ import '../../styles/Window.css';
 const ChatboxWindow = ({ onClose }) => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
-    const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
-    const [windowSize, setWindowSize] = useState({ width: 400, height: 300 });
+    const [windowPosition] = useState({ x: 0, y: 0 });
+    const [windowSize] = useState({ width: 400, height: 300 });
 
     const handleSendMessage = () => {
         setMessages([...messages, { text: input, sender: 'User' }]);
