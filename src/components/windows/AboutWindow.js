@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
-import '../../styles/Window.css';
+import '../../styles/windows/AboutWindow.css';
 
 const AboutWindow = ({ onClose }) => {
     const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
