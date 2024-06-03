@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
-import '../../styles/Window.css';
+import '../../styles/windows/AboutWindow.css';
 
 const CalculatorWindow = ({ onClose }) => {
     const [input, setInput] = useState('');
