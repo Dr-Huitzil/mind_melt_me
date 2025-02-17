@@ -1,0 +1,92 @@
+:root {
+    --window-red: #e03c20;
+    --window-blue: #034b92;
+    --window-yellow: #ffda27;
+    --window-text:000;    
+}
+
+.window{
+    background: white;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Title bar */
+.window-header{
+    background: var(--window-red);
+    color: white;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+}
+
+.window-controls{
+    display: flex;
+    gap: 5px;
+}
+
+.window-control {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--window-text);
+    background: var(--window-yellow);
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+
+window.control:hover{
+    background: #e0c21f;
+}
+
+/* Content */
+.window-body{
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.tab-bar{
+    display: flex;
+    background: var(--window-blue);
+    position: sticky;
+    top: 0;    
+}
+
+.tab{
+    padding: 8px 16px;
+    cursor: pointer;
+    color: white;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active{
+    background: white;
+    color: var(--window-text);
+    border-bottom: var(--window-text);
+}
+
+/*Rezise handle*/
+.window-resize-handle{
+    position: absolute !important;
+    width: 20px;
+    height: 20px;
+    bottom: -2px;
+    right: -2px;
+    cursor: nwse-resize;
+    z-index: 1000;
+}
+
+/*Utility classes*/
+.no-padding{
+    padding: 0 !important;
+}
+.no-margin{
+    margin: 0 !important;
+}
