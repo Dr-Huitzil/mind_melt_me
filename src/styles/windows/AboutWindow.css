@@ -3,7 +3,7 @@
     border: 1px solid black;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
   }
   
   .window-title-bar {
@@ -136,12 +136,22 @@
   }
   
   .react-resizable-handle {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTAgMGgyMHYyMEgwVjB6Ii8+PC9zdmc+');
-    bottom: 0;
-    right: 0;
-    cursor: se-resize;
+    position: absolute !important;
+    width: 30px;
+    height: 30px;
+    bottom: -3px;
+    right: -1px;
+    cursor: nwse-resize;
+    transform: none !important; /* Override default transform */
+    z-index: 1000;
+  }
+
+  .react-resizable{
+    overflow: visible !important;
+    position: relative !important;
+  }
+
+  .window >*:not(.react-resizable-handle){
+    padding: 0;
   }
   
