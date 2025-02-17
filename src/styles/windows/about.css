@@ -73,7 +73,6 @@ window.control:hover{
 }
 
 /*Rezise handle*/
-
 .window-resize-handle{
     position: absolute !important;
     width: 20px;

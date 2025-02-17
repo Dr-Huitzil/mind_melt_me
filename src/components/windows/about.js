@@ -71,10 +71,10 @@ const About = ({ onClose }) => {
                         </div>
 
                         <div className="menu-bar">
-                            <span className='menu-button'>File</span>
-                            <span className='menu-button'>Edit</span>
-                            <span className='menu-button'>View</span>
-                            <span className='menu-button'>Help</span>
+                            <span className='menu-button'><u>F</u>ile</span>
+                            <span className='menu-button'><u>E</u>dit</span>
+                            <span className='menu-button'><u>V</u>iew</span>
+                            <span className='menu-button'><u>H</u>elp</span>
                         </div>
 
                         <div className='address-bar'>
