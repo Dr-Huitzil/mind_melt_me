@@ -9,7 +9,7 @@ const About = ({ onClose }) => {
         position: { x: 0, y: 0 },
         size: { width: 600, height: 400 },
         isMaximized: false,
-        activeTab: 'this-website'
+        activeTab: 'mind-melt'
     });
 
     const windowRef = useRef(null);
