@@ -42,8 +42,8 @@
     place-content: center;
 }
 
-.window.control:hover{
-    background: #796911;
+window.control:hover{
+    background: #e0c21f;
 }
 
 /* Content */
@@ -72,14 +72,15 @@
     border-bottom: var(--window-text);
 }
 
-.react-resizable-handle {
+/*Rezise handle*/
+
+.window-resize-handle{
     position: absolute !important;
-    width: 30px;
-    height: 30px;
-    bottom: -3px;
-    right: -1px;
+    width: 20px;
+    height: 20px;
+    bottom: -2px;
+    right: -2px;
     cursor: nwse-resize;
-    transform: none !important; /* Override default transform */
     z-index: 1000;
 }
 
