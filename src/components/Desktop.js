@@ -55,7 +55,6 @@ const Desktop = ({ onIconClick }) => {
                     onClick={() => onIconClick(id)}
                     role='button'
                     tabIndex={0}
-                    onKeyPress={(e) => e.key === 'Enter' && onIconClick(id)}
                 >
                     <img src={icon} alt={name} loading='lazy' />
                     <span>{name}</span>

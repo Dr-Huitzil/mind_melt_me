@@ -1,5 +1,5 @@
 :root {
-  --desktop-bg: #4863a0;
+  --desktop-bg: url('../assets/background/testdk.jpg');
   --icon-text-color: #fff;
   --taskbar-height: 40px;
   --grid-gap: 10px;
@@ -17,7 +17,8 @@
   align-content: flex-start;
   gap: var(--grid-gap);
   padding: 10px;
-  background-color: var(--desktop-bg);
+  background-image: var(--desktop-bg);
+  background-size: cover;
   width: 100vw;
   height: calc(100vh - var(--taskbar-height));
   box-sizing: border-box;
