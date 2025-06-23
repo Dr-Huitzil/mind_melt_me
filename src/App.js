@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Preloader from './components/Prelaoder';
 import Desktop from './components/Desktop';
-import StartMenu from './components/StartMenu';
-import './styles/global.css';
 import Taskbar from './components/Taskbar';
-//import AboutWindow from './components/windows/AboutWindow';
+import './styles/global.css';
 import About from './components/windows/about';
 import ChatboxWindow from './components/windows/ChatboxWindow';
 import CalculatorWindow from './components/windows/CalculatorWindow';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
-  const [startMenuVisible, setStartMenuVisible] = useState(false);
   const [runningApps, setRunningApps] = useState([]);
-  //const [isAboutWindowOpen, setAboutWindowOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isChatboxWindowOpen, setChatboxWindowOpen] = useState(false);
   const [isCalculatorWindowOpen, setCalculatorWindowOpen] = useState(false);
@@ -24,10 +20,14 @@ const App = () => {
       setLoading(false);
     }, 3000);
 
+    // Load state from localStorage
     const savedRunningApps = JSON.parse(localStorage.getItem('runningApps')) || [];
-    setRunningApps(savedRunningApps);
+    setRunningApps(savedRunningApps.map(app => ({
+      ...app,
+      // Ensure minimized state is boolean
+      minimized: typeof app.minimized === 'boolean' ? app.minimized : false
+    })));
 
-    //setAboutWindowOpen(localStorage.getItem('isAboutWindowOpen') === 'true');
     setIsAboutOpen(localStorage.getItem('isAboutOpen') === 'true');
     setChatboxWindowOpen(localStorage.getItem('isChatboxWindowOpen') === 'true');
     setCalculatorWindowOpen(localStorage.getItem('isCalculatorWindowOpen') === 'true');
@@ -38,117 +38,102 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem('runningApps', JSON.stringify(runningApps));
-    //localStorage.setItem('isAboutWindowOpen', isAboutWindowOpen);
     localStorage.setItem('isAboutOpen', isAboutOpen);
     localStorage.setItem('isChatboxWindowOpen', isChatboxWindowOpen);
     localStorage.setItem('isCalculatorWindowOpen', isCalculatorWindowOpen);
     localStorage.setItem('isShopWindowOpen', isShopWindowOpen);
   }, [runningApps, isAboutOpen, isChatboxWindowOpen, isCalculatorWindowOpen, isShopWindowOpen]);
 
-  const toggleStartMenu = () => {
-    setStartMenuVisible(!startMenuVisible);
+  // Unified window handling functions
+  const handleWindowToggle = (appName, isOpen) => {
+    if (isOpen) {
+      addRunningApp(appName);
+    } else {
+      removeRunningApp(appName);
+    }
   };
 
-  const closeStartMenu = () => {
-    setStartMenuVisible(false);
-  };
-
-  // const handleOpenAboutWindow = () => {
-  //   setAboutWindowOpen(true);
-  //   addRunningApp('About');
-  // };
-
-  // const handleCloseAboutWindow = () => {
-  //   setAboutWindowOpen(false);
-  //   removeRunningApp('About');
-  // };
-
-  const handleOpenAboutWindow = () => {
-    setIsAboutOpen(true);
-    addRunningApp('About');
-  }
-
-  const handleCloseAboutWindow = () => {
-    setIsAboutOpen(false);
-    removeRunningApp('About');
-  }
-
-  const handleOpenChatboxWindow = () => {
-    setChatboxWindowOpen(true);
-    addRunningApp('Chatbox');
-  };
-
-  const handleCloseChatboxWindow = () => {
-    setChatboxWindowOpen(false);
-    removeRunningApp('Chatbox');
-  };
-
-  const handleOpenCalculatorWindow = () => {
-    setCalculatorWindowOpen(true);
-    addRunningApp('Calculator');
-  };
-
-  const handleCloseCalculatorWindow = () => {
-    setCalculatorWindowOpen(false);
-    removeRunningApp('Calculator');
-  };
-
-  const handleOpenShopWindow = () => {
-    setShopWindowOpen(true);
-    addRunningApp('Shop');
-  };
-
-  // const handleCloseShopWindow = () => {
-  //   setShopWindowOpen(false);
-  //   removeRunningApp('Shop');
-  // };
-
-  const handleIconClick = (appName) => {
+  const handleOpenWindow = (appName) => {
     switch (appName) {
-      case 'about':
-        handleOpenAboutWindow();
+      case 'About':
+        setIsAboutOpen(true);
         break;
-      case 'chat':
-        handleOpenChatboxWindow();
+      case 'Chatbox':
+        setChatboxWindowOpen(true);
         break;
-      case 'calculator':
-        handleOpenCalculatorWindow();
+      case 'Calculator':
+        setCalculatorWindowOpen(true);
         break;
-      case 'shop':
-        handleOpenShopWindow();
+      case 'Shop':
+        setShopWindowOpen(true);
         break;
       default:
         break;
+    }
+  };
+
+  const handleCloseWindow = (appName) => {
+    switch (appName) {
+      case 'About':
+        setIsAboutOpen(false);
+        break;
+      case 'Chatbox':
+        setChatboxWindowOpen(false);
+        break;
+      case 'Calculator':
+        setCalculatorWindowOpen(false);
+        break;
+      case 'Shop':
+        setShopWindowOpen(false);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleIconClick = (appName) => {
+    const appMap = {
+      about: 'About',
+      chat: 'Chatbox',
+      calculator: 'Calculator',
+      shop: 'Shop'
+    };
+
+    if (appMap[appName]) {
+      handleOpenWindow(appMap[appName]);
     }
   };
 
   const addRunningApp = (appName) => {
-    if (!runningApps.includes(appName)) {
-      setRunningApps([...runningApps, appName]);
+    if (!runningApps.some(app => app.name === appName)) {
+      setRunningApps([
+        ...runningApps,
+        {
+          id: appName.toLowerCase(),
+          name: appName,
+          minimized: false
+        }
+      ]);
+    } else {
+      // Unminimize if already exists
+      setRunningApps(runningApps.map(app =>
+        app.name === appName ? { ...app, minimized: false } : app
+      ));
     }
   };
 
   const removeRunningApp = (appName) => {
-    setRunningApps(runningApps.filter(app => app !== appName));
+    setRunningApps(runningApps.filter(app => app.name !== appName));
   };
 
-  const handleTaskbarAppClick = (appName) => {
-    switch (appName) {
-      case 'About':
-        handleOpenAboutWindow();
-        break;
-      case 'Chatbox':
-        handleOpenChatboxWindow();
-        break;
-      case 'Calculator':
-        handleOpenCalculatorWindow();
-        break;
-      case 'Shop':
-        handleOpenShopWindow();
-        break;
-      default:
-        break;
-    }
+  const handleTaskbarAppClick = (app) => {
+    // Toggle minimization state
+    setRunningApps(runningApps.map(a =>
+      a.id === app.id ? { ...a, minimized: !a.minimized } : a
+    ));
+
+    // Focus/unminimize window
+    handleOpenWindow(app.name);
   };
 
   return (
@@ -157,17 +142,40 @@ const App = () => {
       {!loading && (
         <div>
           <Desktop onIconClick={handleIconClick} />
-          <div className={`start-menu-wrapper ${startMenuVisible ? 'visible' : ''}`}>
-            <StartMenu onClose={closeStartMenu} />
-          </div>
-          <Taskbar runningApps={runningApps} onAppClick={handleTaskbarAppClick} />
-          <button className='start-button' onClick={toggleStartMenu}>
-            Start
-          </button>
-          {/* {isAboutWindowOpen && <AboutWindow onClose={handleCloseAboutWindow} />} */}
-          {isAboutOpen && <About onClose={handleCloseAboutWindow} />}
-          {isChatboxWindowOpen && <ChatboxWindow onClose={handleCloseChatboxWindow} />}
-          {isCalculatorWindowOpen && <CalculatorWindow onClose={handleCloseCalculatorWindow} />}
+
+          {/* Use the combined component */}
+          <Taskbar
+            runningApps={runningApps}
+            onAppClick={handleTaskbarAppClick}
+          />
+
+          {/* Windows */}
+          {isAboutOpen && (
+            <About
+              onClose={() => {
+                handleCloseWindow('About');
+                handleWindowToggle('About', false);
+              }}
+            />
+          )}
+
+          {isChatboxWindowOpen && !runningApps.find(app => app.name === 'Chatbox')?.minimized && (
+            <ChatboxWindow
+              onClose={() => {
+                handleCloseWindow('Chatbox');
+                handleWindowToggle('Chatbox', false);
+              }}
+            />
+          )}
+
+          {isCalculatorWindowOpen && !runningApps.find(app => app.name === 'Calculator')?.minimized && (
+            <CalculatorWindow
+              onClose={() => {
+                handleCloseWindow('Calculator');
+                handleWindowToggle('Calculator', false);
+              }}
+            />
+          )}
         </div>
       )}
     </div>
