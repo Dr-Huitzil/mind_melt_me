@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import '../styles/taskbarwstart.css';
+import "../styles/StartMenu.css"
+import '../styles/Taskbar.css';
 
 const TaskbarwStart = ({ runningApps, onAppClick }) => {
     //State for start menu visibility
