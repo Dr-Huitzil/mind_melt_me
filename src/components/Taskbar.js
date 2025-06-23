@@ -15,9 +15,9 @@ const Taskbar = ({ runningApps, onAppClick }) => {
     };
 
     //close Start Menu
-    const closeStartMenu = () => {
-        setIsStartMenuOpen(false);
-    };
+    // const closeStartMenu = () => {
+    //     setIsStartMenuOpen(false);
+    // };
 
     //Clock update effect
     useEffect(() => {
@@ -60,7 +60,7 @@ const Taskbar = ({ runningApps, onAppClick }) => {
                             key={app.id}
                             className={`taskbar-icon ${app.minimized ? '' : 'active'}`}
                             onClick={() => onAppClick(app)}
-                            aria-label={'Switch to ${app.name}'}
+                            aria-label={`Switch to ${app.name}`}
                         >
                             {app.name}
                         </button>
