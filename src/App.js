@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Preloader from './components/Prelaoder';
 import Desktop from './components/Desktop';
-import TaskbarwStart from './components/TaskbarwStart';// Updated import
+import Taskbar from './components/Taskbar';
 import './styles/global.css';
 import About from './components/windows/about';
 import ChatboxWindow from './components/windows/ChatboxWindow';
@@ -144,7 +144,7 @@ const App = () => {
           <Desktop onIconClick={handleIconClick} />
 
           {/* Use the combined component */}
-          <TaskbarwStart
+          <Taskbar
             runningApps={runningApps}
             onAppClick={handleTaskbarAppClick}
           />

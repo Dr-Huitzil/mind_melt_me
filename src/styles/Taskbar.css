@@ -1,74 +1,145 @@
-body {
-  background-color: #4863a0;
-  color: #000;
-  font-family: 'Libre Caslon Condensed', serif;
-  font-size: 16px;
-  line-height: 1.5;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Prevent scrolling */
+/* Unified Taskbar and Start Menu Styles */
+:root {
+  --primary-blue: #034b92;
+  --dark-blue: #003366;
+  --darker-blue: #002244;
+  --light-yellow: #ffda27;
+  --light-cream: #f9f6e7;
+  --white: #fff;
+  --black: #000;
+  --navy: navy;
+  --taskbar-height: 40px;
 }
 
-.start-button {
-  background-color: #ffda27;
-  border: 1px solid #000;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  cursor: pointer;
-  font-size: 16px;
-  z-index: 1000;
-}
-
-.start-menu-wrapper {
-  background-color: #f8f8f8;
-  border: 1px solid #000;
-  position: fixed;
-  bottom: 40px;
-  left: 0;
-  display: none;
-  z-index: 1000;
-}
-
-.start-menu-wrapper.visible {
-  display: block;
-}
-
-.taskbar {
-  background-color: #003366;
+/* Taskbar Container */
+.taskbar-container {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 40px;
+  z-index: 1000;
+}
+
+/* Taskbar Styles */
+.taskbar {
+  background-color: var(--dark-blue);
+  height: var(--taskbar-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
-  z-index: 1000;
-  box-shadow: 0 -1px 0 #fff;
+  box-shadow: 0 -1px 0 var(--white);
+  position: relative;
 }
 
+/* Start Button Styles */
+.start-button {
+  background-color: var(--light-yellow);
+  border: 1px solid var(--black);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.start-button:hover {
+  background-color: #e6c522;
+}
+
+/* Taskbar Icons Container */
 .taskbar-icons {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.taskbar-icon {
+  color: var(--white);
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.taskbar-icon.active {
+  background-color: var(--primary-blue);
+  border: 1px solid var(--white);
+}
+
+.taskbar-icon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* System Clock */
+.taskbar-time {
+  color: var(--white);
+  font-size: 14px;
+  padding: 5px 10px;
+  border: 1px solid var(--darker-blue);
+  background-color: var(--dark-blue);
+  text-align: center;
+}
+
+/* Start Menu Styles */
+.start-menu {
+  position: fixed;
+  left: 10px;
+  bottom: 50px;
+  width: 200px;
+  background-color: var(--light-cream);
+  border: 1px solid var(--black);
+  display: flex;
+  z-index: 10000;
+}
+
+.start-strip {
+  background-color: var(--navy);
+  width: 25px;
+  height: 300px;
+  float: left;
+  margin: 1px;
+  padding: 5px;
+}
+
+.start-strip-rotate {
+  transform: rotate(180deg);
+  color: var(--white);
+  font-size: 20px;
+  text-align: left;
+  writing-mode: vertical-rl;
+  height: 100%;
   display: flex;
   align-items: center;
 }
 
-.taskbar-icon {
-  color: #fff;
-  margin: 0 10px;
-  cursor: pointer;
+.start-menu-text {
+  overflow: hidden;
+  line-height: 17px;
+  padding: 10px;
+  width: 100%;
 }
 
-.taskbar-time {
-  color: #fff;
-  font-size: 14px;
+.menu-child {
+  display: block;
   padding: 5px 10px;
-  border: 1px solid #002244; /* Adjust border color if necessary */
-  background-color: #003366; /* Adjust background color if necessary */
-  text-align: center;
-  margin-right: 15px; /* Adjust this value to move the time closer to the right */
+  color: var(--black);
+  text-decoration: none;
+  border-radius: 3px;
 }
 
+.menu-child:hover {
+  background-color: var(--navy);
+  color: var(--white);
+}
 
+/* Body styles remain in global.css */
