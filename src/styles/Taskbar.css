@@ -3,7 +3,7 @@
   --primary-blue: #034b92;
   --dark-blue: #003366;
   --darker-blue: #002244;
-  --light-yellow: #ffda27;
+  --yellow: #ffd91b;
   --light-cream: #f9f6e7;
   --white: #fff;
   --black: #000;
@@ -34,17 +34,18 @@
 
 /* Start Button Styles */
 .start-button {
-  background-color: var(--light-yellow);
-  border: 1px solid var(--black);
+  background-color: var(--yellow);
   position: fixed;
-  bottom: 0;
   left: 0;
+  bottom: 0;
+  height : var(--taskbar-height);
+  padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
   display: flex;
   align-items: center;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .start-button:hover {
@@ -56,7 +57,9 @@
   display: flex;
   align-items: center;
   flex-grow: 1;
-  margin-left: 10px;
+  overflow-x: auto;
+  padding-left: 50px; /* Space for the start button */
+  padding-right: 100px; /* Space for the clock */
 }
 
 .taskbar-icon {
@@ -99,7 +102,6 @@
   background-color: var(--light-cream);
   border: 1px solid var(--black);
   display: flex;
-  z-index: 10000;
 }
 
 .start-strip {
