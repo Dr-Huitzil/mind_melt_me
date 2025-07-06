@@ -28,7 +28,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
-  box-shadow: 0 -1px 0 var(--white);
+  box-shadow: 0 -1px 0 #4b97ff;
   position: relative;
 }
 
@@ -88,8 +88,8 @@
   color: var(--white);
   font-size: 14px;
   padding: 5px 10px;
-  border: 1px solid var(--darker-blue);
-  background-color: var(--dark-blue);
+  border: 1px solid var(--dark-blue);
+  background-color: var(--darker-blue);
   text-align: center;
 }
 

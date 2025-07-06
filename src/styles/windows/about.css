@@ -6,9 +6,8 @@
 }
 
 .window{
-    background: rgb(204, 203, 203);
-    border: 1px solid black;
-    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff;
+    background: #0058e3;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #0058e3, inset -2px -2px #0058e3, inset 2px 2px #4b97ff;
     padding: 5px;
     position: relative;
     overflow: visible;
@@ -19,7 +18,7 @@
 
 /* Title bar */
 .window-header{
-    background: var(--window-red);
+    background: linear-gradient(to right, #0058e3, #4b97ff);
     color: white;
     padding: 5px;
     display: flex;
@@ -37,7 +36,17 @@
     width: 27px;
     height: 27px;
     border: 1px solid var(--window-text);
-    background: var(--window-yellow);
+    background: linear-gradient(to bottom, #6bb1ff, #1e6fd9);
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+
+.window-control-close {
+    width: 27px;
+    height: 27px;
+    border: 1px solid var(--window-text);
+    background: var(--window-red);
     cursor: pointer;
     display: grid;
     place-content: center;
@@ -49,11 +58,12 @@ window.control:hover{
 
 /* Menu Bar */
 .menu-bar {
-    background-color: #034b92;
-    color: white;
+    background: rgb(204, 203, 203);
+    color: black;
     padding: 5px;
     display: flex;
     gap: 10px;
+    border-bottom: 1px solid black;
 }
   
 .menu-bar .menu-button {
@@ -79,11 +89,12 @@ window.control:hover{
 }
   
 .address-bar {
-    background-color: #034b92;
-    color: white;
+    background: rgb(204, 203, 203);
+    color: Black;
     padding: 5px;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid black;
 }
   
 .address-bar span {
@@ -105,7 +116,7 @@ window.control:hover{
 
 .tab-bar{
     display: flex;
-    background: var(--window-blue);
+    background: rgb(204, 203, 203);
     position: sticky;
     top: 0;    
 }
@@ -113,7 +124,7 @@ window.control:hover{
 .tab{
     padding: 8px 16px;
     cursor: pointer;
-    color: white;
+    color: black;
     border-bottom: 2px solid transparent;
 }
 

@@ -67,7 +67,7 @@ const About = ({ onClose }) => {
                                 <button className='window-control' onClick={() => handleResize(!state.isMaximized)}>
                                     {state.isMaximized ? '🗗' : '🗖'}
                                 </button>
-                                <button className='window-control' onClick={onClose}>✕</button>
+                                <button className='window-control-close' onClick={onClose}>✕</button>
                             </div>
                         </div>
 
