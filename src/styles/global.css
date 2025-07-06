@@ -10,7 +10,6 @@
   --red: #e03c20;
   --dark-red: #782010;
   --light-yellow: #f9f6e7;
-  --yellow: #ffda27;
   --dark-yellow: #b69d20;
 }
 
@@ -23,6 +22,7 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
+  height: 100%;
   overflow: hidden; /* Prevent scrolling */
 }
   
@@ -40,13 +40,53 @@ body {
   * {
     font-family: 'Kosugi Maru', sans-serif;
   }
-  
-  body {
-    margin: 0;
-    height: 100%;
-    overflow: hidden;
+
+/* Mobile-first base styles */
+@media (max-width: 768px) {
+  :root {
+    --taskbar-height: 40px;
+    --icon-size: 40px;
   }
 
-  /* styles for the start button */
+  /* Desktop grid adjustments */
+  .desktop {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-auto-rows: minmax(80px, auto);
+    gap: 8px;
+  }
 
-  
+  .desktop-icon span {
+    font-size: 12px;
+    word-break: break-word;
+  }
+
+  /* Taskbar adjustments */
+  .taskbar {
+    height: var(--taskbar-height);
+  }
+
+  .taskbar-icon {
+    min-width: 60px;
+    padding: 4px 8px;
+    font-size: 12px;
+    height: 25px;
+  }
+
+  .start-button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  /* Window components */
+  .window {
+    width: 95vw !important;
+    min-width: unset !important;
+    max-height: 90vh;
+  }
+
+  .main-site{
+    padding: 20px;
+    background-color: aquamarine;
+    height: 100%;
+}
+}
