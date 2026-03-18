@@ -40,7 +40,7 @@
   border: 1px solid #1c8c2e; /* A dark green border. */
   border-radius: 3px; /* Slightly rounded corners. */
   color: white; /* White text. */
-  padding: 3px 10px; /* Padding inside the button. */
+  padding: 3px 17px; /* Padding inside the button. */
   cursor: pointer; /* Changes the cursor to a pointer on hover. */
   font-size: 14px; /* The font size of the button text. */
   font-weight: bold; /* Bold text. */
