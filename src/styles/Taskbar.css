@@ -40,16 +40,15 @@
   border: 1px solid #1c8c2e; /* A dark green border. */
   border-radius: 3px; /* Slightly rounded corners. */
   color: white; /* White text. */
-  padding: 3px 17px; /* Padding inside the button. */
+  padding: 10px 20px; /* Padding inside the button. */
   cursor: pointer; /* Changes the cursor to a pointer on hover. */
-  font-size: 14px; /* The font size of the button text. */
+  font-size: 16px; /* The font size of the button text. */
   font-weight: bold; /* Bold text. */
   display: flex; /* Uses flexbox for alignment. */
   align-items: center; /* Centers the text vertically. */
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* A shadow for the text. */
   z-index: 1001; /* Ensures the start button is above the taskbar. */
   height : var(--taskbar-height);
-  width: 3%;
   position: fixed;
   left: 0;
   bottom: 0;
