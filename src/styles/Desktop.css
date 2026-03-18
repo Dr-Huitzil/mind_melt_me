@@ -1,58 +1,80 @@
+/* Defines custom properties (variables) for the desktop styling. */
 :root {
-  --desktop-bg: url('../assets/background/testdk.jpg');
-  --icon-text-color: #fff;
-  --taskbar-height: 40px;
-  --grid-gap: 10px;
-  --icon-size: 50px;
-  --icon-spacing: 5px;
-  --icon-width: 100px;
-  --icon-height: 100px;
+  --desktop-bg: url('../assets/background/testdk.jpg'); /* The background image for the desktop. */
+  --icon-text-color: #fff; /* The color of the text below the icons (white). */
+  --taskbar-height: 40px; /* The height of the taskbar, used to calculate desktop height. */
+  --grid-gap: 10px; /* The gap between desktop icons. */
+  --icon-size: 50px; /* The maximum size of the icon images. */
+  --icon-spacing: 5px; /* The space between the icon image and its text label. */
+  --icon-width: 100px; /* The width of the container for each icon. */
+  --icon-height: 100px; /* The height of the container for each icon. */
 }
 
-/* Desktop Container */
+/* Styles for the main desktop container. */
 .desktop {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: var(--grid-gap);
-  padding: 10px;
-  background-image: var(--desktop-bg);
-  background-size: cover;
-  width: 100vw;
-  height: calc(100vh - var(--taskbar-height));
-  box-sizing: border-box;
-  overflow-x: auto;
+  display: flex; /* Uses flexbox for icon layout. */
+  flex-direction: column; /* Stacks icons vertically. */
+  flex-wrap: wrap; /* Allows icons to wrap to the next column. */
+  align-content: flex-start; /* Aligns columns of icons to the start of the container. */
+  gap: var(--grid-gap); /* The space between icons. */
+  padding: 10px; /* Padding around the desktop. */
+  background-image: var(--desktop-bg); /* Sets the desktop background image. */
+  background-size: cover; /* Ensures the background image covers the entire desktop. */
+  width: 100vw; /* The width of the desktop is the full viewport width. */
+  height: calc(100vh - var(--taskbar-height)); /* The height of the desktop is the full viewport height minus the taskbar height. */
+  box-sizing: border-box; /* Includes padding and border in the element's total width and height. */
+  overflow-x: auto; /* Adds a horizontal scrollbar if the content overflows. */
+  font-family: "Tahoma", sans-serif; /* The classic Windows font for icon labels. */
 }
 
-/* Desktop Icon Styles */
+/* Styles for individual desktop icons. */
 .desktop-icon {
-  width: var(--icon-width);
-  height: var(--icon-height);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  text-align: center;
-  transition: transform 0.1s ease;
-  user-select: none;
+  width: var(--icon-width); /* The width of the icon container. */
+  height: var(--icon-height); /* The height of the icon container. */
+  display: flex; /* Uses flexbox to layout the icon and its label. */
+  flex-direction: column; /* Stacks the icon image and its label vertically. */
+  align-items: center; /* Centers the icon and label horizontally. */
+  justify-content: center; /* Centers the icon and label vertically. */
+  cursor: pointer; /* Changes the cursor to a pointer on hover. */
+  text-align: center; /* Centers the text label. */
+  user-select: none; /* Prevents the user from selecting the icon text. */
+  border: 1px solid transparent; /* A transparent border by default. */
 }
 
+/* Styles for an icon when it is being clicked. */
 .desktop-icon:active {
-  transform: scale(0.95);
+  transform: scale(0.95); /* Slightly shrinks the icon to give a pressed effect. */
 }
 
+/* Styles for an icon when it is focused or selected. */
+.desktop-icon:focus,
+.desktop-icon.selected {
+  /* A semi-transparent blue background to indicate selection. */
+  background-color: rgba(49, 106, 197, 0.5);
+  /* A dotted blue border, similar to the selection rectangle in Windows. */
+  border: 1px dotted #316ac5;
+}
+
+/* Styles for the text label of a focused or selected icon. */
+.desktop-icon:focus span,
+.desktop-icon.selected span {
+  background-color: #316ac5; /* A solid blue background for the text. */
+}
+
+/* Styles for the image within a desktop icon. */
 .desktop-icon img {
-  max-width: var(--icon-size);
-  max-height: var(--icon-size);
-  margin-bottom: var(--icon-spacing);
-  pointer-events: none;
+  max-width: var(--icon-size); /* The maximum width of the image. */
+  max-height: var(--icon-size); /* The maximum height of the image. */
+  margin-bottom: var(--icon-spacing); /* The space between the image and the text label. */
+  pointer-events: none; /* Prevents the image from intercepting mouse events. */
 }
 
+/* Styles for the text label of a desktop icon. */
 .desktop-icon span {
-  font-size: 14px;
-  color: var(--icon-text-color);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  pointer-events: none;
+  font-size: 14px; /* The font size of the label. */
+  color: var(--icon-text-color); /* The color of the label text. */
+  /* A shadow to make the text more readable against the background. */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  pointer-events: none; /* Prevents the text from intercepting mouse events. */
+  padding: 2px; /* Padding around the text. */
 }

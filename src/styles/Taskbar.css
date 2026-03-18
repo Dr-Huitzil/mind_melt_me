@@ -22,44 +22,52 @@
 
 /* Taskbar Styles */
 .taskbar {
-  background-color: var(--dark-blue);
+  background: linear-gradient(to bottom, #245edb, #2f73e5 50%, #2f73e5 50%, #245edb);
   height: var(--taskbar-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
-  box-shadow: 0 -1px 0 #4b97ff;
+  box-shadow: 0 -1px 0 #000;
   position: relative;
+  z-index: 1000
 }
 
-/* Start Button Styles */
+/* Styles for the start button. */
 .start-button {
-  background-color: var(--yellow);
+  /* A green gradient for the classic "Start" button look. */
+  background: linear-gradient(to bottom, #39b64a, #45e058);
+  border: 1px solid #1c8c2e; /* A dark green border. */
+  border-radius: 3px; /* Slightly rounded corners. */
+  color: white; /* White text. */
+  padding: 3px 10px; /* Padding inside the button. */
+  cursor: pointer; /* Changes the cursor to a pointer on hover. */
+  font-size: 14px; /* The font size of the button text. */
+  font-weight: bold; /* Bold text. */
+  display: flex; /* Uses flexbox for alignment. */
+  align-items: center; /* Centers the text vertically. */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* A shadow for the text. */
+  z-index: 1001; /* Ensures the start button is above the taskbar. */
+  height : var(--taskbar-height);
+  width: 3%;
   position: fixed;
   left: 0;
   bottom: 0;
-  height : var(--taskbar-height);
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  z-index: 1001;
 }
 
+/* Styles for the start button when hovered over. */
 .start-button:hover {
-  background-color: #e6c522;
+  /* Reverses the gradient on hover to give a slight interactive effect. */
+  background: linear-gradient(to bottom, #45e058, #39b64a);
 }
 
 /* Taskbar Icons Container */
 .taskbar-icons {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  overflow-x: auto;
-  padding-left: 50px; /* Space for the start button */
-  padding-right: 100px; /* Space for the clock */
+  display: flex; /* Uses flexbox for alignment. */
+  align-items: center; /* Centers the icons vertically. */
+  flex-grow: 1; /* Allows the container to grow and fill the available space. */
+  overflow-x: auto; /* Adds a horizontal scrollbar if there are too many icons. */
+  margin-left: 10px; /* Adds some space to the left of the icons. */
 }
 
 .taskbar-icon {
@@ -74,23 +82,43 @@
   text-align: center;
 }
 
+/* Styles for individual application icons in the taskbar. */
+/* .taskbar-icon {
+  color: white; /* White text color. 
+  margin: 0 2px; /* Small margin between icons. 
+  padding: 3px 10px; /* Padding inside the icon container. 
+  cursor: pointer; /* Changes the cursor to a pointer on hover. 
+  border: 1px solid #1c8c2e; /* A dark green border. 
+  /* A blue gradient that matches the taskbar. 
+  background: linear-gradient(to bottom, #245edb, #2f73e5);
+  border-radius: 3px; /* Slightly rounded corners
+  min-width: 120px; /* A minimum width for each icon container.
+  text-align: left; /* Aligns the text to the left. 
+  white-space: nowrap; /* Prevents the text from wrapping to the next line. 
+  overflow: hidden; /* Hides any text that overflows the container. 
+  text-overflow: ellipsis; /* Adds an ellipsis (...) to text that is too long. 
+} */
+
 .taskbar-icon.active {
-  background-color: var(--primary-blue);
-  border: 1px solid var(--white);
+  /* A darker blue gradient to indicate the active window. */
+  background: linear-gradient(to bottom, #1e4cb3, #245edb);
+  border-color: #0c2b6b; /* A darker border color. */
 }
 
 .taskbar-icon:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  /* Reverses the gradient on hover for a visual effect. */
+  background: linear-gradient(to bottom, #2f73e5, #245edb);
 }
 
-/* System Clock */
+/* Styles for the clock in the taskbar. */
 .taskbar-time {
-  color: var(--white);
-  font-size: 14px;
-  padding: 5px 10px;
-  border: 1px solid var(--dark-blue);
-  background-color: var(--darker-blue);
-  text-align: center;
+  color: white; /* White text color. */
+  font-size: 12px; /* A smaller font size for the clock. */
+  padding: 5px 10px; /* Padding around the clock. */
+  border-left: 1px solid #1c8c2e; /* A dark green line to the left of the clock. */
+  /* A blue gradient that matches the taskbar. */
+  background: linear-gradient(to bottom, #245edb, #2f73e5);
+  text-align: center; /* Centers the time text. */
 }
 
 /* Start Menu Styles */

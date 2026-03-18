@@ -1,168 +1,205 @@
+/* Defines custom properties (variables) for the window styling. */
 :root {
-    --window-red: #e03c20;
-    --window-blue: #034b92;
-    --window-yellow: #ffda27;
-    --window-text:000;    
+    --window-red: #e03c20; /* A red color, typically for close buttons. */
+    --window-blue: #034b92; /* A blue color, used for headers and borders. */
+    --window-yellow: #ffda27; /* A yellow color, not currently used but defined. */
+    --window-text: #000; /* Black color for text. */
 }
 
-.window{
-    background: #0058e3;
-    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #0058e3, inset -2px -2px #0058e3, inset 2px 2px #4b97ff;
-    padding: 5px;
-    position: relative;
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+/* Styles for the main window container. */
+.window {
+    border: 1px solid #0831d9; /* A blue border, giving it a classic Windows look. */
+    background-color: #ece9d8; /* A light grey background, common in older UIs. */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* A shadow to make the window pop out. */
+    padding: 3px; /* Small padding around the window content. */
+    position: relative; /* Needed for absolute positioning of child elements. */
+    overflow: hidden; /* Hides content that overflows the window. */
+    display: flex; /* Uses flexbox for layout. */
+    flex-direction: column; /* Stacks child elements vertically. */
+    height: 100%; /* Makes the window fill its container. */
 }
 
-/* Title bar */
-.window-header{
-    background: linear-gradient(to right, #0058e3, #4b97ff);
-    color: white;
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: move;
+/* Styles for the window's title bar. */
+.window-header {
+    background: linear-gradient(to right, #0831d9, #8ca9eb); /* A blue gradient for the classic XP look. */
+    color: white; /* White text for the title. */
+    padding: 3px 5px; /* Padding inside the title bar. */
+    display: flex; /* Uses flexbox for alignment. */
+    justify-content: space-between; /* Pushes the title and controls apart. */
+    align-items: center; /* Centers items vertically. */
+    cursor: move; /* Changes the cursor to indicate the window can be moved. */
+    font-family: "Tahoma", sans-serif; /* A font commonly used in Windows XP. */
+    font-size: 13px; /* The typical font size for window titles. */
+    font-weight: bold; /* Makes the title text bold. */
 }
 
-.window-controls{
-    display: flex;
-    gap: 5px;
+/* Styles for the window title text and icon container. */
+.window-title {
+    display: flex; /* Uses flexbox for alignment. */
+    align-items: center; /* Centers the title and icon vertically. */
+    gap: 5px; /* Adds space between the icon and the title. */
 }
 
+/* Styles for the icon in the window title bar. */
+.window-title-icon {
+    width: 16px; /* A standard size for title bar icons. */
+    height: 16px; /* A standard size for title bar icons. */
+}
+
+/* Container for the window control buttons (minimize, maximize, close). */
+.window-controls {
+    display: flex; /* Uses flexbox for alignment. */
+    gap: 2px; /* Adds a small space between the buttons. */
+}
+
+/* Styles for individual window control buttons. */
 .window-control {
-    width: 27px;
-    height: 27px;
-    border: 1px solid var(--window-text);
-    background: linear-gradient(to bottom, #6bb1ff, #1e6fd9);
-    cursor: pointer;
-    display: grid;
-    place-content: center;
+    width: 21px; /* The width of the control buttons. */
+    height: 21px; /* The height of the control buttons. */
+    border: 1px solid #0831d9; /* A blue border around the buttons. */
+    background: #d4d0c8; /* A light grey background for the buttons. */
+    cursor: pointer; /* Changes the cursor to a pointer on hover. */
+    display: grid; /* Uses grid to center the button icons. */
+    place-content: center; /* Centers the icons both horizontally and vertically. */
+    font-family: "Marlett", "Webdings"; /* Fonts that contain the minimize, maximize, and close icons. */
+    font-size: 14px; /* The size of the icons inside the buttons. */
+    box-shadow: inset 1px 1px #fff, inset -1px -1px #808080; /* An inset shadow to give the buttons a 3D look. */
 }
 
+/* Styles for the control buttons when they are being clicked. */
+.window-control:active {
+    border: 1px solid #808080; /* A grey border when clicked. */
+    box-shadow: inset 1px 1px #808080, inset -1px -1px #fff; /* Reverses the shadow to make the button look pressed. */
+}
+
+/* Specific style for the close button. */
 .window-control-close {
-    width: 27px;
-    height: 27px;
-    border: 1px solid var(--window-text);
-    background: var(--window-red);
-    cursor: pointer;
-    display: grid;
-    place-content: center;
+    background: #e03c20; /* A red background for the close button. */
+    color: white; /* White icon color. */
 }
 
-window.control:hover{
-    background: #e0c21f;
-}
-
-/* Menu Bar */
+/* Styles for the menu bar (File, Edit, View, etc.). */
 .menu-bar {
-    background: rgb(204, 203, 203);
-    color: black;
-    padding: 5px;
-    display: flex;
-    gap: 10px;
-    border-bottom: 1px solid black;
+    background: #ece9d8; /* A light grey background. */
+    color: black; /* Black text color. */
+    padding: 3px 2px; /* Padding around the menu bar. */
+    display: flex; /* Uses flexbox for alignment. */
+    gap: 10px; /* Space between the menu buttons. */
+    border-bottom: 1px solid #d4d0c8; /* A light grey line at the bottom. */
+    font-family: "Tahoma", sans-serif; /* The classic Windows font. */
+    font-size: 11px; /* A smaller font size for the menu. */
 }
-  
+
+/* Styles for individual buttons in the menu bar. */
 .menu-bar .menu-button {
-    cursor: pointer;
-    padding: 2px 5px;
-    border-radius: 3px;
+    cursor: pointer; /* Changes the cursor to a pointer on hover. */
+    padding: 2px 5px; /* Padding inside the buttons. */
 }
-  
+
+/* Styles for menu buttons when hovered over. */
 .menu-bar .menu-button:hover {
-    background-color: #f0f0f0;
-    color: #034b92;
+    background-color: #316ac5; /* A blue background on hover. */
+    color: white; /* White text on hover. */
 }
-  
-.menu-bar span {
-    cursor: pointer;
-    padding: 2px 5px;
-    border-radius: 3px;
-}
-  
-.menu-bar span:active {
-    background-color: #ffda27;
-    color: black;
-}
-  
+
+/* Styles for the address bar. */
 .address-bar {
-    background: rgb(204, 203, 203);
-    color: Black;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid black;
+    background: #ece9d8; /* A light grey background. */
+    color: #595959; /* A grey text color for the label. */
+    padding: 3px 2px; /* Padding around the address bar. */
+    display: flex; /* Uses flexbox for alignment. */
+    align-items: center; /* Centers items vertically. */
+    border-bottom: 1px solid #d4d0c8; /* A light grey line at the bottom. */
+    font-family: "Tahoma", sans-serif; /* The classic Windows font. */
+    font-size: 11px; /* A smaller font size. */
 }
-  
+
+/* Styles for the "Address" label in the address bar. */
 .address-bar span {
-    margin-right: 5px;
+    margin-right: 5px; /* Space to the right of the label. */
+    margin-left: 2px; /* Space to the left of the label. */
 }
-  
+
+/* Styles for the input field in the address bar. */
 .address-bar input {
-    width: 100%;
-    padding: 2px 5px;
-    border: none;
-    border-radius: 3px;
+    width: 100%; /* Makes the input field take up the full width. */
+    padding: 2px 5px; /* Padding inside the input field. */
+    border: 1px solid #808080; /* A grey border around the input. */
+    border-radius: 0; /* Removes any rounded corners. */
+    font-family: "Tahoma", sans-serif; /* The classic Windows font. */
+    font-size: 11px; /* A smaller font size. */
+    background: white; /* A white background for the input field. */
 }
 
-/* Content */
-.window-body{
-    flex-grow: 1;
-    overflow: auto;
+/* Styles for the main content area of the window. */
+.window-body {
+    flex-grow: 1; /* Allows the body to grow and fill the available space. */
+    overflow: auto; /* Adds scrollbars if the content is too large. */
+    background: #fff; /* A white background for the content. */
+    padding: 10px; /* Padding around the content. */
 }
 
-.tab-bar{
-    display: flex;
-    background: rgb(204, 203, 203);
-    position: sticky;
-    top: 0;    
+/* Styles for the tab bar. */
+.tab-bar {
+    display: flex; /* Uses flexbox for alignment. */
+    background: #ece9d8; /* A light grey background. */
+    position: sticky; /* Makes the tab bar stick to the top when scrolling. */
+    top: 0; /* The tab bar sticks to the top of its container. */
+    font-family: "Tahoma", sans-serif; /* The classic Windows font. */
+    font-size: 11px; /* A smaller font size. */
 }
 
-.tab{
-    padding: 8px 16px;
-    cursor: pointer;
-    color: black;
-    border-bottom: 2px solid transparent;
+/* Styles for individual tabs. */
+.tab {
+    padding: 5px 10px; /* Padding inside the tabs. */
+    cursor: pointer; /* Changes the cursor to a pointer on hover. */
+    color: black; /* Black text color. */
+    border: 1px solid #d4d0c8; /* A light grey border. */
+    border-bottom: none; /* No border at the bottom. */
+    background: #ece9d8; /* A light grey background. */
 }
 
-.tab.active{
-    background: white;
-    color: var(--window-text);
-    border-bottom: var(--window-text);
+/* Styles for the active tab. */
+.tab.active {
+    background: white; /* A white background for the active tab. */
+    color: var(--window-text); /* Black text color. */
+    border-bottom: 1px solid white; /* A white border at the bottom to blend with the content area. */
 }
 
 /*Rezise handle*/
 .react-resizable-handle{
     position: absolute !important;
-    width: 30px;
-    height: 30px;
-    bottom: -12px;
-    right: -1px;
+    width: 30px !important;
+    height: 30px !important;
+    bottom: -9px !important;
+    right: -1px !important;
     cursor: nwse-resize;
     transform: none !important; 
     z-index: 1000;
 }
 
-.react-resizable{
-    overflow: visible !important;
-    position: relative !important;
+/* Styles for the resizable component's wrapper. */
+.react-resizable {
+    overflow: visible !important; /* Allows the resize handle to be visible outside the container. */
+    position: relative !important; /* Needed for the absolute positioning of the handle. */
 }
 
-.window{
+/* Disables transitions on the window. */
+.window {
     transition: none !important;
 }
 
-.window >*:not(.react-resizable-handle){
+/* Removes padding from all direct children of the window, except the resize handle. */
+.window >*:not(.react-resizable-handle) {
     padding: 0;
 }
 
-/*Utility classes*/
-.no-padding{
+/* A utility class to remove all padding. */
+.no-padding {
     padding: 0 !important;
 }
-.no-margin{
+
+/* A utility class to remove all margin. */
+.no-margin {
     margin: 0 !important;
 }
