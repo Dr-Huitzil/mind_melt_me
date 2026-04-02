@@ -20,7 +20,7 @@ export const useWindowBounds = (defaultSize) => {
     const [preMaximizeState, setPreMaximizeState] = useState(null);
 
     // keep window in bounds uf browser is resized
-    useInsertionEffect(() => {
+    useEffect(() => {
         const handleBrowserResize = () => {
             if (state.isMaximized) return; // skip if maximized, will be handled on restore
             setState(prev => {
@@ -65,14 +65,14 @@ export const useWindowBounds = (defaultSize) => {
         }
     }, [state.isMaximized, preMaximizeState, defaultSize]);
 
-    const handleDragStop = useCallbaack((e, data) => {
+    const handleDragStop = useCallback((e, data) => {
         setState(prev => ({
             ...prev,
             position: { x: data.x, y: data.y }
         }));
     }, []);
 
-    const handleResizeStop = useCallbacl((e, data) => {
+    const handleResizeStop = useCallback((e, data) => {
         setState(prev => ({
             ...prev,
             size: { width: data.size.width, height: data.size.height }

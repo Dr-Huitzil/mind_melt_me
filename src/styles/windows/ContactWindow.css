@@ -1,0 +1,140 @@
+/* ContactWindow.css */
+
+/* Styles for the main content wrapper inside the window */
+.contact-main-container {
+    display: flex; /* Arranges children in a flexible layout */
+    flex-direction: column; /* Stacks children vertically */
+    height: 100%; /* Fills the entire height of the window frame */
+    background-color: #c0c0c0; /* Sets the classic Windows 95 gray background color */
+    padding: 15px; /* Adds space inside the container edges */
+    box-sizing: border-box; /* Includes padding in the element's total width and height */
+    overflow: hidden; /* Prevents content from spilling outside the container */
+}
+
+/* Styles for the email display box, giving it an inset 3D look */
+.contact-inset-border {
+    border-top: 2px solid #808080; /* Top shadow for the inset 3D effect */
+    border-left: 2px solid #808080; /* Left shadow for the inset 3D effect */
+    border-right: 2px solid #fff; /* Right highlight for the inset 3D effect */
+    border-bottom: 2px solid #fff; /* Bottom highlight for the inset 3D effect */
+    background-color: #fff; /* Sets the inner background to white */
+    padding: 12px 15px; /* Adds internal spacing around the text */
+    display: flex; /* Enables flexbox for horizontal alignment */
+    align-items: center; /* Vertically centers the items inside */
+    justify-content: space-between; /* Pushes the email text left and button right */
+    margin-bottom: 20px; /* Adds space below this element */
+}
+
+/* Container for the email icon and text */
+.contact-email-container {
+    display: flex; /* Arranges the icon and text horizontally */
+    align-items: center; /* Vertically centers the icon and text */
+    gap: 15px; /* Adds space between the icon and text */
+}
+
+/* Styles for the email icon */
+.contact-email-icon {
+    font-size: 28px; /* Sets the size of the emoji icon */
+}
+
+/* Styles for the actual email address text */
+.contact-email-text {
+    font-family: Arial, sans-serif; /* Uses a clean, modern sans-serif font */
+    font-size: 15px; /* Sets the text size */
+    color: #000; /* Sets text color to black for readability */
+    user-select: all; /* Allows users to easily select the whole email address with one click */
+}
+
+/* Default styles for the copy button, styling it like a classic Windows 95 button */
+.contact-copy-button {
+    padding: 4px 25px; /* Adds horizontal and vertical space inside the button */
+    border-top: 2px solid #fff; /* Top highlight for out-set 3D effect */
+    border-left: 2px solid #fff; /* Left highlight for out-set 3D effect */
+    border-right: 2px solid #000; /* Right shadow for out-set 3D effect */
+    border-bottom: 2px solid #000; /* Bottom shadow for out-set 3D effect */
+    background-color: #c0c0c0; /* Sets the classic blocky button gray background */
+    cursor: pointer; /* Changes mouse cursor to a pointer hand when hovering */
+    font-family: "MS Sans Serif", Arial; /* Uses a classic OS font */
+    font-size: 13px; /* Sets a readable text size */
+}
+
+/* Styles applied to the copy button when the mouse clicks down on it */
+.contact-copy-button:active {
+    border-top: 2px solid #000; /* Changes top border to dark shadow (pressed in) */
+    border-left: 2px solid #000; /* Changes left border to dark shadow (pressed in) */
+    border-bottom: 2px solid #fff; /* Changes bottom border to light highlight */
+    border-right: 2px solid #fff; /* Changes right border to light highlight */
+}
+
+/* Styles for the fieldset acting as a classic OS group box */
+.contact-socials-fieldset {
+    border-top: 2px solid #808080; /* Top shadow for the group box border */
+    border-left: 2px solid #808080; /* Left shadow for the group box border */
+    border-right: 2px solid #fff; /* Right highlight for the group box border */
+    border-bottom: 2px solid #fff; /* Bottom highlight for the group box border */
+    padding: 20px 15px; /* Adds inner spacing for social icons */
+    position: relative; /* Sets a positioning anchor for the legend text */
+    margin-top: 10px; /* Separates the group box from the elements above it */
+}
+
+/* Styles for the legend text placed on the fieldset border */
+.contact-socials-legend {
+    position: absolute; /* Takes the element out of flow to position it precisely */
+    top: -10px; /* Moves it up slightly to overlap the top border */
+    left: 10px; /* Positions it inwards from the left edge */
+    background-color: #c0c0c0; /* Uses the background gray to hide the border line underneath it */
+    padding: 0 5px; /* Adds horizontal breathing room around the text */
+    font-family: "MS Sans Serif", Arial; /* Uses the classic system font */
+    font-size: 13px; /* Sets a readable text size */
+    color: #000; /* Sets text color to standard black */
+}
+
+/* Container matching the row of social icons */
+.contact-socials-container {
+    display: flex; /* Arranges social icons horizontally */
+    justify-content: space-around; /* Distributes icons evenly across the available space */
+    align-items: center; /* Aligns icons vertically in the center */
+}
+
+/* Styles for the anchor <a> tag representing the shortcut icon */
+.contact-shortcut-icon-link {
+    position: relative; /* Sets anchor for the absolute-positioned arrow icon */
+    display: inline-block; /* Allows dimensions while still flowing inline */
+    text-decoration: none; /* Removes default underline from the link */
+    cursor: pointer; /* Shows hand cursor when hovered over */
+    width: 40px; /* Gives a fixed width for the click target */
+    height: 40px; /* Gives a fixed height for the click target */
+    text-align: center; /* Centers the emoji horizontally inside the block */
+}
+
+/* Styles for the div containing the emoji itself */
+.contact-shortcut-icon-emoji {
+    font-size: 36px; /* Sets a large size for the emoji to act as the icon */
+    line-height: 40px; /* Vertical centers the emoji within its 40px height parent */
+}
+
+/* Styles for the small box that holds the shortcut arrow */
+.contact-shortcut-arrow-container {
+    position: absolute; /* Positions it precisely over the link corner */
+    bottom: -2px; /* Overhangs slightly off the bottom edge */
+    left: -2px; /* Overhangs slightly off the left edge */
+    background-color: #fff; /* Solid white background to blot out what's behind */
+    width: 14px; /* Small, fixed width for the arrow box */
+    height: 14px; /* Small, fixed height for the arrow box */
+    border-top: 1px solid #c0c0c0; /* Light inner border for faint 3D effect */
+    border-left: 1px solid #c0c0c0; /* Light inner border for faint 3D effect */
+    border-bottom: 1px solid #000; /* Dark outer border edge */
+    border-right: 1px solid #000; /* Dark outer border edge */
+    display: flex; /* Enables flexbox inside the tiny square */
+    justify-content: center; /* Centers the arrow character horizontally */
+    align-items: center; /* Centers the arrow character vertically */
+}
+
+/* Styles for the actual arrow character inside the shortcut box */
+.contact-shortcut-arrow {
+    font-size: 12px; /* Small size for the arrow icon */
+    color: #000; /* Black arrow color */
+    font-weight: bold; /* Makes the arrow slightly thicker */
+    transform: rotate(-45deg); /* Points the right arrow diagonally upwards left */
+    margin-bottom: 2px; /* Slight optical adjustment to center the character better */
+}

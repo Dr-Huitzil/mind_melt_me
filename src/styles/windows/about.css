@@ -4,14 +4,15 @@
     --window-blue: #034b92; /* A blue color, used for headers and borders. */
     --window-yellow: #ffda27; /* A yellow color, not currently used but defined. */
     --window-text: #000; /* Black color for text. */
+    --grey-color: rgb(204, 203, 203); /* A light grey color, used for backgrounds and borders. */
 }
 
 /* Styles for the main window container. */
 .window {
     border: 1px solid #0831d9; /* A blue border, giving it a classic Windows look. */
-    background-color: #ece9d8; /* A light grey background, common in older UIs. */
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* A shadow to make the window pop out. */
-    padding: 3px; /* Small padding around the window content. */
+    background-color: var(--grey-color); /* A light grey background, common in older UIs. */
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #0058e3, inset -2px -2px #0058e3, inset 2px 2px #4b97ff; /* A shadow to make the window pop out. */
+    padding: 5px; /* Small padding around the window content. */
     position: relative; /* Needed for absolute positioning of child elements. */
     overflow: hidden; /* Hides content that overflows the window. */
     display: flex; /* Uses flexbox for layout. */
@@ -21,9 +22,9 @@
 
 /* Styles for the window's title bar. */
 .window-header {
-    background: linear-gradient(to right, #0831d9, #8ca9eb); /* A blue gradient for the classic XP look. */
+    background: linear-gradient(to right, #0058e3, #4b97ff); /* A blue gradient for the classic XP look. */
     color: white; /* White text for the title. */
-    padding: 3px 5px; /* Padding inside the title bar. */
+    padding: 5px; /* Padding inside the title bar. */
     display: flex; /* Uses flexbox for alignment. */
     justify-content: space-between; /* Pushes the title and controls apart. */
     align-items: center; /* Centers items vertically. */
@@ -49,14 +50,14 @@
 /* Container for the window control buttons (minimize, maximize, close). */
 .window-controls {
     display: flex; /* Uses flexbox for alignment. */
-    gap: 2px; /* Adds a small space between the buttons. */
+    gap: 5px; /* Adds a small space between the buttons. */
 }
 
 /* Styles for individual window control buttons. */
 .window-control {
-    width: 21px; /* The width of the control buttons. */
-    height: 21px; /* The height of the control buttons. */
-    border: 1px solid #0831d9; /* A blue border around the buttons. */
+    width: 30px; /* The width of the control buttons. */
+    height: 25px; /* The height of the control buttons. */
+    border: 1px solid var(--window-text); /* A blue border around the buttons. */
     background: #d4d0c8; /* A light grey background for the buttons. */
     cursor: pointer; /* Changes the cursor to a pointer on hover. */
     display: grid; /* Uses grid to center the button icons. */
@@ -74,44 +75,51 @@
 
 /* Specific style for the close button. */
 .window-control-close {
+    width: 30px; /* The width of the control buttons. */
+    height: 25px; /* The height of the control buttons. */
+    border: 1px solid var(--window-text); /* A blue border around the buttons. */
     background: #e03c20; /* A red background for the close button. */
     color: white; /* White icon color. */
+    cursor: pointer; /* Changes the cursor to a pointer on hover. */
+    display: grid; /* Uses grid to center the button icons. */
+    place-content: center; /* Centers the icons both horizontally and vertically. */
 }
 
 /* Styles for the menu bar (File, Edit, View, etc.). */
 .menu-bar {
-    background: #ece9d8; /* A light grey background. */
+    background: var(--grey-color); /* A light grey background. */
     color: black; /* Black text color. */
-    padding: 3px 2px; /* Padding around the menu bar. */
+    padding: 5px; /* Padding around the menu bar. */
     display: flex; /* Uses flexbox for alignment. */
     gap: 10px; /* Space between the menu buttons. */
-    border-bottom: 1px solid #d4d0c8; /* A light grey line at the bottom. */
+    border-bottom: 1px solid black; /* A light grey line at the bottom. */
     font-family: "Tahoma", sans-serif; /* The classic Windows font. */
-    font-size: 11px; /* A smaller font size for the menu. */
+    font-size: 13px; /* A smaller font size for the menu. */
 }
 
 /* Styles for individual buttons in the menu bar. */
 .menu-bar .menu-button {
     cursor: pointer; /* Changes the cursor to a pointer on hover. */
     padding: 2px 5px; /* Padding inside the buttons. */
+    border-radius: 3px; /* Slightly rounded corners for the buttons. */
 }
 
 /* Styles for menu buttons when hovered over. */
 .menu-bar .menu-button:hover {
-    background-color: #316ac5; /* A blue background on hover. */
-    color: white; /* White text on hover. */
+    background-color: #f0f0f0; /* A grey background on hover. */
+    color: #034b92; /* Blue text on hover. */
 }
 
 /* Styles for the address bar. */
 .address-bar {
-    background: #ece9d8; /* A light grey background. */
-    color: #595959; /* A grey text color for the label. */
+    background: var(--grey-color); /* A light grey background. */
+    color: var(--window-text); /* A grey text color for the label. */
     padding: 3px 2px; /* Padding around the address bar. */
     display: flex; /* Uses flexbox for alignment. */
     align-items: center; /* Centers items vertically. */
-    border-bottom: 1px solid #d4d0c8; /* A light grey line at the bottom. */
+    border-bottom: 1px solid black; /* A light grey line at the bottom. */
     font-family: "Tahoma", sans-serif; /* The classic Windows font. */
-    font-size: 11px; /* A smaller font size. */
+    font-size: 13px; /* A smaller font size. */
 }
 
 /* Styles for the "Address" label in the address bar. */
@@ -124,8 +132,8 @@
 .address-bar input {
     width: 100%; /* Makes the input field take up the full width. */
     padding: 2px 5px; /* Padding inside the input field. */
-    border: 1px solid #808080; /* A grey border around the input. */
-    border-radius: 0; /* Removes any rounded corners. */
+    border: none; /* A grey border around the input. */
+    border-radius: 3px; /* Removes any rounded corners. */
     font-family: "Tahoma", sans-serif; /* The classic Windows font. */
     font-size: 11px; /* A smaller font size. */
     background: white; /* A white background for the input field. */
@@ -135,35 +143,32 @@
 .window-body {
     flex-grow: 1; /* Allows the body to grow and fill the available space. */
     overflow: auto; /* Adds scrollbars if the content is too large. */
-    background: #fff; /* A white background for the content. */
-    padding: 10px; /* Padding around the content. */
 }
 
 /* Styles for the tab bar. */
 .tab-bar {
     display: flex; /* Uses flexbox for alignment. */
-    background: #ece9d8; /* A light grey background. */
+    background: var(--grey-color); /* A light grey background. */
     position: sticky; /* Makes the tab bar stick to the top when scrolling. */
     top: 0; /* The tab bar sticks to the top of its container. */
     font-family: "Tahoma", sans-serif; /* The classic Windows font. */
-    font-size: 11px; /* A smaller font size. */
+    font-size: 13px; /* A smaller font size. */
 }
 
 /* Styles for individual tabs. */
 .tab {
-    padding: 5px 10px; /* Padding inside the tabs. */
+    padding: 8px 16px; /* Padding inside the tabs. */
     cursor: pointer; /* Changes the cursor to a pointer on hover. */
     color: black; /* Black text color. */
-    border: 1px solid #d4d0c8; /* A light grey border. */
-    border-bottom: none; /* No border at the bottom. */
-    background: #ece9d8; /* A light grey background. */
+    border-bottom: 2px solid transparent; /* No border at the bottom. */
+    background: var(--grey-color); /* A light grey background. */
 }
 
 /* Styles for the active tab. */
 .tab.active {
     background: white; /* A white background for the active tab. */
     color: var(--window-text); /* Black text color. */
-    border-bottom: 1px solid white; /* A white border at the bottom to blend with the content area. */
+    border-bottom: var(--window-text); /* A white border at the bottom to blend with the content area. */
 }
 
 /*Rezise handle*/
@@ -171,7 +176,7 @@
     position: absolute !important;
     width: 30px !important;
     height: 30px !important;
-    bottom: -9px !important;
+    bottom: -12px !important;
     right: -1px !important;
     cursor: nwse-resize;
     transform: none !important; 
