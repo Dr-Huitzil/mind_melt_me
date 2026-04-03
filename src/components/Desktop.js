@@ -1,29 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
+import Draggable from 'react-draggable';
+import ContextMenu from './ContextMenu'
+import { useWindowActions } from '../contexts/WindowContext';
 import '../styles/Desktop.css';
 
-const icons = [
-    { id: 'about', name: 'About', icon: require('../assets/desktop-icons/me-icon.png') },
-    { id: 'chat', name: 'Chatbox', icon: require('../assets/desktop-icons/kirby1.jpg') },
-    { id: 'calculator', name: 'Calculator', icon: require('../assets/desktop-icons/kirby2.jpg') },
-    { id: 'shop', name: 'Shop', icon: require('../assets/desktop-icons/kirby3.png') },
-    { id: 'contact', name: 'Contact', icon: require('../assets/desktop-icons/kirby4.jpg') },
-    { id: 'music', name: 'Music', icon: require('../assets/desktop-icons/kirby5.jpg') },
-    { id: 'video', name: 'Video', icon: require('../assets/desktop-icons/kirby6.png') },
-    { id: 'games', name: 'Games', icon: require('../assets/desktop-icons/kirby1.jpg') },
-    { id: 'images', name: 'Images', icon: require('../assets/desktop-icons/kirby2.jpg') },
-    { id: 'the-lore', name: 'The Lore', icon: require('../assets/desktop-icons/kirby3.png') },
-    { id: 'notepad', name: 'Notepad', icon: require('../assets/desktop-icons/kirby4.jpg') },
-    { id: 'faq', name: 'FAQ', icon: require('../assets/desktop-icons/kirby5.jpg') },
-    { id: 'more-links', name: 'More Links', icon: require('../assets/desktop-icons/kirby5.jpg') },
-    { id: 'blog', name: 'Blog', icon: require('../assets/desktop-icons/kirby6.png') }
-];
+import { desktopIcons, appsConfig } from '../config/apps.config';
 
-const Desktop = ({ onIconClick }) => {
+const DesktopIcon = ({ id, name, icon, onClick, initialPosition, onDragStop }) => {
+    const nodeRef = React.useRef(null);
+
+    return (
+        <Draggable
+            nodeRef={nodeRef}
+            bounds="parent"
+            defaultPosition={initialPosition}
+            onStop={(e, data) => onDragStop(id, e, data)}
+        >
+            <div
+                ref={nodeRef}
+                className='desktop-icon'
+                onDoubleClick={() => onClick(id)}
+                role="button"
+                tabIndex={0}
+            >
+                <img src={icon} alt={name} loading="lazy" />
+                <span>{name}</span>
+            </div>
+        </Draggable>
+    );
+};
+
+
+const Desktop = ({ wallpaper }) => {
+    const { handleOpenWindow } = useWindowActions();
+
     const [contextMenu, setContextMenu] = useState({
         visible: false,
         position: { x: 0, y: 0 }
     });
+    const [iconPositions, setIconPositions] = useState(() => {
+        try {
+            const saved = localStorage.getItem('desktopIconPositions');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (typeof parse === 'object' && parsed !== null && !Array.isArray(parsed)) {
+                    return parsed;
+                }
+                console.warn("Security/Format Warnings: Desktop 'desktopIconPositions' storage mapping is malicious or corrupt. Automatically resetting to default");
+            }
+            return {};
+        } catch (e) {
+            console.warn("Security/Format Warning: Desktop 'desktopIconPositions' parsing fualt", e.message);
+        }
+    });
+
+    const handleIconClick = (appId) => {
+        // find the app configuration by ID
+        const appInfo = Object.values(appsConfig).find(app => app.id === appId);
+        if (appInfo && appInfo.windowName) {
+            handleOpenWindow(appInfo.windowName, appInfo.props || {});
+        }
+    };
+
+    const handleDragStop = (id, e, data) => {
+        setIconPositions(prev => {
+            const newPos = { ...prev, [id]: { x: data.x, y: data.y } };
+            localStorage.setItem('desktopIconPositions', JSON.stringify(newPos));
+            return newPos;
+        });
+    };
 
     const handleRightClick = (event) => {
         event.preventDefault();
@@ -37,42 +83,39 @@ const Desktop = ({ onIconClick }) => {
         setContextMenu(prev => ({ ...prev, visible: false }));
     };
 
-    const handleNewShortcut = () => {
+    const handleDisplaySettings = () => {
         handleCloseContextMenu();
-        console.log('New Shortcut');
+        handleIconClick('settings');
     };
 
     return (
         <div
             className="desktop"
+            style={wallpaper ? { backgroundImage: `url(${wallpaper})` } : {}}
             onContextMenu={handleRightClick}
             onClick={handleCloseContextMenu}
         >
-            {icons.map(({ id, name, icon }) => (
-                <div
-                    key={id}
-                    className='desktop-icon'
-                    onClick={() => onIconClick(id)}
-                    role='button'
-                    tabIndex={0}
-                >
-                    <img src={icon} alt={name} loading='lazy' />
-                    <span>{name}</span>
-                </div>
+            {desktopIcons.map((app) => (
+                <DesktopIcon
+                    key={app.id}
+                    id={app.id}
+                    name={app.name}
+                    icon={app.icon}
+                    onClick={handleIconClick}
+                    initialPosition={iconPositions[app.id] || { x: 0, y: 0 }}
+                    onDragStop={handleDragStop}
+                />
             ))}
 
-            <contextMenu
+            {/* Capitalized component tag so React registers it as ContextMenu componnet and not as HTML5 <contextMenu>*/}
+            <ContextMenu
                 position={contextMenu.position}
                 visible={contextMenu.visible}
                 onClose={handleCloseContextMenu}
-                onNewShortcut={handleNewShortcut}
+                onDisplaySettings={handleDisplaySettings}
             />
         </div>
     );
 };
 
-Desktop.propTypes = {
-    onIconClick: PropTypes.func.isRequired
-};
-
-export default Desktop;
+export default React.memo(Desktop);
