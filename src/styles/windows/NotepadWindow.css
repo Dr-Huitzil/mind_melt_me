@@ -1,0 +1,48 @@
+/* =========================================================
+   NotepadWindow.css
+   Simulates classic Windows Notepad interface.
+   ========================================================= */
+
+.not-window-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #c0c0c0;
+}
+
+/* Menu Bar */
+.not-menu-bar {
+    display: flex;
+    padding: 2px 0;
+}
+
+.not-menu-item {
+    padding: 2px 6px;
+    cursor: default;
+    font-family: "MS Sans Serif", Arial, sans-serif;
+    font-size: 11px;
+}
+
+/* Text Area */
+.not-text-area-wrapper {
+    display: flex;
+    flex: 1;
+    padding: 0 2px 2px 2px;
+    overflow: hidden;
+}
+
+.not-text-area {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    outline: none;
+    font-family: Fixedsys, "Courier New", monospace;
+    font-size: 14px;
+    padding: 4px;
+    margin: 0;
+    box-sizing: border-box;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}

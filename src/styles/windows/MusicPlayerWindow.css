@@ -1,0 +1,291 @@
+/* =========================================================
+   MusicPlayerWindow.css
+   Simulates Winamp's customizable interface.
+   Uses CSS variables mapped from the React theme state so colors can shift dramatically without writing new CSS.
+   ========================================================= */
+
+/* The root wrapper that receives the style object with custom CSS Variables injected inline by React */
+.musicplayer-root {
+    height: 100%; /* Stretch to parent window */
+    background-color: var(--theme-base); /* Apply dynamic theme baseline color */
+    padding: 2px; /* Slight edge buffer */
+    box-sizing: border-box; /* Padding doesn't break height 100% calculation */
+}
+
+/* The primary gradient container holding all the player interface components */
+.musicplayer-container {
+    display: flex; /* Stacks components top-to-bottom */
+    flex-direction: column;
+    height: 100%; /* Takes full inner dimensions */
+    background: linear-gradient(to bottom, var(--theme-grad-top), var(--theme-grad-mid), var(--theme-base)); /* 3-step gradient giving that legacy Winamp metallic curve look */
+    font-family: Arial, sans-serif; /* System font for menus */
+    padding: 6px; /* Group internal edge padding */
+    user-select: none; /* No ugly text highlighting when clicking fast */
+    box-sizing: border-box; /* Padding respects width limit */
+}
+
+/* Faux menu bar styling on the very top of player */
+.musicplayer-menu-row {
+    display: flex; /* Stacks items inline horizontally */
+    margin-bottom: 4px; /* Separation from the LCD below it */
+}
+
+/* Each file/edit/etc menu block */
+.musicplayer-menu-item {
+    padding: 2px 6px; /* Click target */
+    font-size: 11px; /* Micro UI font */
+    cursor: default; /* Desktop cursor */
+}
+
+/* Central LCD display block containing numbers and marquees */
+.musicplayer-lcd {
+    background-color: #111; /* Extremely dark grey background resembling off glass */
+    border: 2px solid #666; /* Defining edge */
+    border-top-color: #444; border-left-color: #444; /* Inset edge shading */
+    border-bottom-color: #aaa; border-right-color: #aaa; /* Inset edge highlight */
+    border-radius: 4px; /* Curved screen corners */
+    padding: 8px; /* Offset text from glass edge */
+    display: flex; /* Layout elements inside */
+    flex-direction: column; /* Stack time over bitrate over title */
+    gap: 6px; /* Spaces out internal screen clumps */
+    color: #d4d4d4; /* Default dim grey text for inactive parts */
+    box-shadow: inset 0 0 10px #000; /* Dark inner shadow simulating CRT glass depth */
+    margin-bottom: 10px; /* Space off from controls under it */
+}
+
+/* Huge glowing Time counter within LCD */
+.musicplayer-lcd-time {
+    font-size: 28px; /* Massive size */
+    font-family: "Courier New", monospace; /* Blocky digits */
+    font-weight: bold; /* Thick text */
+    letter-spacing: 2px; /* Force separation mimicking digital segments */
+    color: #fff; /* Bright white/core color */
+    text-shadow: 0 0 5px #fff; /* Blooming halo glow effect mimicking bright LEDs */
+}
+
+/* Bitrate display stack box */
+.musicplayer-lcd-bitrate {
+    display: flex; /* Row wrapper */
+    flex-direction: column; /* Stacks kbps specs vertically */
+    font-size: 9px; /* Tiny sub text */
+    gap: 2px; /* Micro padding between text lines */
+}
+
+/* Technical badge indicators (ex: stereo, 44khz) */
+.musicplayer-lcd-badge {
+    background-color: #fff; /* Solid contrast background */
+    color: #000; /* Black pop out text */
+    padding: 0 2px; /* Pill boxing */
+    border-radius: 2px; /* Curving */
+}
+
+/* Specific styling for inactive badges like 'Mono' usually */
+.musicplayer-lcd-badge-mono {
+    border: 1px solid #555; /* Distinct border */
+    padding: 0 6px; /* Thick pill form */
+    border-radius: 4px; /* Extreme curve */
+    background-color: #333; /* Dark background indicating not-active/illuminated */
+}
+
+/* Visualizer bars at the right side */
+.musicplayer-visualizer {
+    display: flex; /* Stacks equalizers */
+    align-items: flex-end; /* All bars drop from the bottom anchor going up */
+    height: 24px; /* Locked box height */
+    gap: 1px; /* Separation to make each look like a discrete hardware LED bar */
+}
+
+/* The marquee text box scrolling title below main data */
+.musicplayer-lcd-marquee-container {
+    font-family: "Courier New", monospace; /* Robot blocky font */
+    font-size: 13px; /* Slightly larger text */
+    color: #bbf0bb; /* Classic Winamp phosphor green */
+    overflow: hidden; /* Hide the rest of the long name */
+    white-space: nowrap; /* Prevent newline wrapping */
+    border-top: 1px solid #333; /* Etched seam in the LCD glass */
+    padding-top: 4px; /* Separation from seam */
+    width: 100%; /* Spans the entire screen block */
+}
+
+/* Keyframe definition for text panning left endlessly */
+@keyframes scrollMarquee {
+    0% { transform: translateX(100%); } /* Start completely offscreen right */
+    100% { transform: translateX(-100%); } /* End completely offscreen left */
+}
+
+/* Binding the keyframe to the span element */
+.lcd-marquee {
+    display: inline-block; /* Needs to be inline block to apply transforms */
+    animation: scrollMarquee 7s linear infinite; /* Panning speed and infinite looping */
+}
+
+/* Wrapper for the drag slider */
+.musicplayer-timeline-wrapper {
+    display: flex; /* Aligns track elements horizontally */
+    align-items: center; /* Vertical Center */
+    margin-bottom: 12px; /* Pad below slider */
+}
+
+/* The actual groove that the scrub thumb slides inside */
+.musicplayer-timeline-track {
+    flex: 1; /* Stretch across the entire row */
+    height: 6px; /* Thin line */
+    background: linear-gradient(to right, #888, #555); /* Dark groove gradient */
+    border-radius: 3px; /* Soft edges */
+    position: relative; /* Anchor for absolute positioning the scrub thumb */
+    border: 1px solid #444; /* Groove defining outline */
+}
+
+/* The draggable knob showing current playtime */
+.musicplayer-timeline-thumb {
+    position: absolute; /* Place anywhere on the line freely via inline styles on React */
+    top: -4px; /* Hang over the edge of the 6px track */
+    width: 20px; /* Fat hit target */
+    height: 12px; /* Longer than the track */
+    background: linear-gradient(to bottom, #eee, #aaa); /* Light metallic bulb gradient */
+    border-radius: 6px; /* Pill shaped knob */
+    border: 1px solid #333; /* Contrast outline */
+}
+
+/* Enables smoothing so playing the song incrementally slides the thumb, instead of stuttering */
+.musicplayer-timeline-thumb.playing {
+    transition: left 1s linear; /* Slowly animate changes to left position per second */
+}
+
+/* Button & Controls Array row */
+.musicplayer-controls-row {
+    display: flex; /* Arrange buttons */
+    justify-content: space-between; /* Put playback controls left, volume controls right */
+    align-items: center; /* Vertical lock */
+    margin-bottom: 15px; /* Offset from playlist block underneath */
+}
+
+/* Groups play/pause/prev/next clumped tightly together */
+.musicplayer-controls-group {
+    display: flex; /* Align inline */
+    gap: 6px; /* Standard separation */
+}
+
+/* Circular hardware-like metallic buttons inheriting theme variables */
+.musicplayer-control-btn {
+    width: 32px; /* Hard circle width */
+    height: 32px; /* Hard circle height */
+    border-radius: 50%; /* Force perfectly round */
+    background: linear-gradient(to bottom, var(--theme-btn-top), var(--theme-btn-bot)); /* Metallic top to bottom curve based on current skin */
+    border: 1px solid var(--theme-border); /* Edge outline */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 2px 2px rgba(255,255,255,0.6); /* Cast shadow downward, and an inner shine effect at top inside edge */
+    display: flex; /* Center internal play icons */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Indication */
+    font-size: 14px; /* Internal size config */
+    color: #333; /* Very dark grey text */
+}
+
+/* Section isolating the volume slider structure */
+.musicplayer-volume-wrapper {
+    display: flex; 
+    align-items: center; /* Vertical height matches other buttons row */
+    gap: 8px; /* Fix speaker next to track */
+}
+
+/* Speaker icon */
+.musicplayer-volume-icon {
+    font-size: 16px; /* Moderate size */
+}
+
+/* Box wrapper giving the volume track space */
+.musicplayer-volume-track-container {
+    width: 80px; /* Small slider width */
+    height: 16px; /* Generous hit target area */
+    display: flex; /* Center inner elements */
+    align-items: center; 
+    position: relative; /* Context relative to absolute thumb block positioning */
+    cursor: pointer; /* Clicking track area could in theory jump volume */
+}
+
+/* Groove track for volume */
+.musicplayer-volume-track {
+    width: 100%; /* Stretch out */
+    height: 4px; /* Thin line */
+    background: linear-gradient(to right, var(--theme-border), var(--theme-grad-top)); /* Complex color integrating theme */
+    border-radius: 2px; /* Curve */
+    border: 1px solid var(--theme-border); 
+    pointer-events: none; /* Passes click logic totally to wrapper container */
+}
+
+/* Volume position thumb */
+.musicplayer-volume-thumb {
+    position: absolute; /* Float freely along horizontal */
+    width: 12px; /* Small square */
+    height: 10px; /* Small square */
+    background: #e0e0e0; /* Platinum color */
+    border: 1px solid #666; /* Gray border */
+    border-radius: 2px; /* Square with rounded corners */
+    pointer-events: none; /* Prevent stealing click events from wrapper track container */
+}
+
+/* Playlist and Options View Box grouping tab headers and scrolling body list */
+.musicplayer-bottom-pane {
+    flex: 1; /* Stretch vertical list downwards infinitely */
+    display: flex; /* Arrange headers over list body */
+    flex-direction: column; 
+    background-color: var(--theme-grad-mid); /* Solid dark theme background */
+    border: 1px solid #888; /* Framing */
+    border-radius: 4px; /* Curving */
+    overflow: hidden; /* Prevent child boxes escaping frame */
+}
+
+/* The dark grey scrolling field showing lists of tracks */
+.musicplayer-list-box {
+    flex: 1; /* Automatically resize vertical space */
+    background-color: #9a9a9a; /* Winamp standard empty state background */
+    padding: 4px; /* Distance from border */
+    border: 2px solid #555; /* Inner edge */
+    border-top-color: #333; /* Inset depth edge */
+    border-left-color: #333; /* Inset depth edge */
+    overflow-y: auto; /* Required to allow infinite scrolling inside the box */
+}
+
+/* Actual individual list elements (Track 1, Track 2...) */
+.musicplayer-list-item {
+    padding: 2px 6px; /* Row clearance */
+    font-size: 12px; /* Readability setting */
+    color: #fff; /* White letters */
+    cursor: pointer; /* Indication of launch */
+    font-family: Arial, sans-serif; /* Override monospace for lists typically */
+    background-color: transparent; /* Seamless blend horizontally */
+}
+
+/* Changing background of the row to reflect its selection state */
+.musicplayer-list-item.selected {
+    background-color: var(--theme-border); /* Highlighting using theme colors */
+}
+
+/* Box wrapper for the tabs */
+.musicplayer-tabs-header {
+    display: flex; /* Flow inline horizontally */
+    padding: 4px 4px 0 4px; /* Padding excluding bottom */
+    background-color: var(--theme-grad-top); /* Lighter top frame matching main top player */
+}
+
+/* Individual list tabs ("Playlist" vs "Eq") */
+.musicplayer-tab {
+    padding: 2px 10px; /* Shape hit targets */
+    font-size: 11px; /* Mini text */
+    font-weight: bold; /* Thicker weight usually used for titles */
+    border: 1px solid #777; /* Outer tracing */
+    border-bottom: none; /* No line cutting off bottom, attaches to content */
+    background-color: #a0a0a0; /* Unfocused tab grey */
+    border-top-left-radius: 4px; /* Round only the top left */
+    border-top-right-radius: 4px; /* Round only the top right */
+    margin-right: 4px; /* Distance between distinct adjacent tabs */
+    cursor: pointer; /* Interactable pointer */
+    color: #000; /* Black font */
+    text-shadow: 1px 1px 0px #0055a4; /* A strange blue drop shadow mimicking weird theme interactions */
+}
+
+/* State when clicked */
+.musicplayer-tab.active {
+    background: linear-gradient(to bottom, var(--theme-grad-top), var(--theme-grad-mid)); /* Bring focus forwards by changing gradient */
+}

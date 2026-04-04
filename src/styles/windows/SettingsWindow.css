@@ -1,0 +1,253 @@
+/* =========================================================
+   SettingsWindow.css
+   Simulates the classic Windows XP 'Display Properties' UI.
+   ========================================================= */
+
+/* Main wrapper that mimics the default Windows dialog background */
+.settings-window-container {
+    display: flex; /* Used to stack tabs above content vertically */
+    flex-direction: column; 
+    height: 100%; /* Stretches to parent boundaries */
+    background-color: #efebde; /* Classic Windows XP "Classic Theme" or "Luna dialog box" off-white */
+    padding: 10px; /* Inward bounds padding */
+    font-family: Tahoma, "MS Sans Serif", Arial, sans-serif; /* XP standard sans-serif stack */
+    font-size: 11px; /* Default XP small dialog font */
+    box-sizing: border-box; /* Padding won't pop window boundaries */
+}
+
+/* Container for the classic top tabs */
+.settings-tabs-container {
+    display: flex; /* Horizontal arrangement for tabs */
+    border-bottom: 1px solid #fff; /* The white highlight marking the top of the content box */
+    margin-bottom: -1px; /* Pull the active tab down to cover the border, generating the 'merged' effect */
+    z-index: 1; /* Ensures tabs appear structurally on top of content borders */
+}
+
+/* Individual tab styles (recreates 3D borders for non-active and flat integration for active) */
+.settings-tab {
+    padding: 3px 8px; /* Internal clearance inside the tab */
+    border: 1px solid #919b9c; /* The distinct blue-gray border of Luna theme */
+    background-color: #efebde; /* Standard dialog background */
+    border-bottom: 1px solid #919b9c; /* Hard border for non active tabs */
+    margin-top: 2px; /* Push down to show unselected state is smaller/lower */
+    margin-right: 2px; /* Spacing between adjacent tabs */
+    border-top-left-radius: 3px; /* Slightly curve the top corners */
+    border-top-right-radius: 3px;
+    cursor: default; /* Desktop apps use default pointer, not hand for tabs */
+    position: relative; /* Acts as anchor */
+    top: 1px; /* Align with bottom border overlap */
+}
+
+/* The currently selected tab merges seamlessly with the content box */
+.settings-tab.active {
+    background-color: #fff; /* Bright white to match main content area */
+    border-bottom: 1px solid #fff; /* Visually erases the barrier line */
+    margin-top: 0; /* Grow upwards indicating prominence */
+}
+
+/* The actual content box beneath the tabs, simulating a sunken white frame */
+.settings-tab-content {
+    flex: 1; /* Takes remaining height */
+    border: 1px solid #919b9c; /* Matches tab borders */
+    background-color: #fff; /* Paper-like backing for settings */
+    padding: 15px; /* Clear spacing inside */
+    display: flex; /* Content stack layout */
+    flex-direction: column; 
+    position: relative; /* Target for any absolute overlays used within */
+}
+
+/* Password gate overlay that sits exactly over the content */
+.password-prompt-overlay {
+    position: absolute; /* Cover the entire settings internal frame */
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9); /* Opaque frosted glass effect */
+    z-index: 10; /* Float above other XP UI components inside the settings page */
+    display: flex; /* Used to easily center the auth prompt box inside this overlay */
+    flex-direction: column;
+    align-items: center; /* Horizontally center */
+    justify-content: center; /* Vertically center */
+    padding: 20px;
+}
+
+/* The actual dialog window prompting for auth */
+.password-prompt-box {
+    border: 1px solid #0055ea; /* Intense Luna blue outline */
+    padding: 15px; /* Spacing from walls for text/inputs */
+    background-color: #ece9d8; /* Luna theme primary secondary beige color */
+    width: 80%; /* Don't stretch the full length */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Gives drop shadow making prompt float */
+}
+
+/* Dark blue header banner on auth prompt */
+.password-prompt-header {
+    background-color: #0055ea; /* Solid blue */
+    color: #fff; /* Inverse text */
+    padding: 3px 5px; /* Tight text wrapping */
+    font-weight: bold; /* Prominent title */
+    margin: -15px -15px 15px -15px; /* Negative margins hack to extend banner past parent padding */
+}
+
+/* Title form block labels */
+.password-prompt-label {
+    display: block; /* Break to new line */
+    margin-bottom: 8px; /* Offset input beneath it */
+}
+
+/* Text fields mimicking standard XP inset styles */
+.xp-input {
+    width: 100%; /* Extend to edge of its container */
+    padding: 4px; /* Internal typing offset */
+    border: 1px solid #7f9db9; /* Standard Luna inset input border (distinct from button borders) */
+    box-sizing: border-box; /* Lock widths */
+}
+
+/* Action button area inside prompts */
+.password-prompt-actions {
+    display: flex; /* Flow buttons side by side */
+    justify-content: flex-end; /* Push okay/cancel to the far right */
+    gap: 8px; /* Space between buttons */
+    margin-top: 15px; /* Offset from input above it */
+}
+
+/* Flex layout centering the mini monitor display showing the desktop background preview */
+.monitor-preview-container {
+    display: flex; /* Layout for center */
+    justify-content: center; /* Push to middle */
+    margin-bottom: 15px; /* Offset from selection lists below */
+    position: relative; /* Context parent for the stand items */
+}
+
+/* The plastic CRT monitor casing */
+.monitor-preview-body {
+    width: 180px; /* Fixed proportion width */
+    height: 140px; /* Fixed proportion height */
+    background-color: #e0dfdf; /* Light computer gray plastic */
+    border-radius: 10px 10px 0 0; /* Slope the top casing slightly like older monitors */
+    border: 2px solid #a0a0a0; /* Defining edge */
+    display: flex; /* For internal centering */
+    align-items: center; 
+    justify-content: center; /* Centers the black bezel */
+    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2); /* Creates pseudo 3D curve effect */
+}
+
+/* The black screen bezel mimicking CRT glass offset */
+.monitor-preview-bezel {
+    width: 150px; /* Smaller than plastic shell */
+    height: 110px; /* Smaller than plastic shell */
+    background-color: #000; /* Black glass frame background */
+    border: 5px solid #c0c0c0; /* Internal gray rim simulating chassis thickness */
+    border-radius: 5px; /* Rounded tube edges */
+    overflow: hidden; /* Clips the background image rigidly */
+    position: relative; 
+}
+
+/* Desktop wallpaper preview block */
+.monitor-preview-screen-content {
+    width: 100%; /* Stretch full bounds */
+    height: 100%; 
+    background-size: cover; /* Equivalent to "fill" or "stretch" mode */
+    background-position: center; /* Lock visual anchor */
+}
+
+/* Fallback color when no background image is active */
+.monitor-preview-screen-empty {
+    width: 100%;
+    height: 100%;
+    background-color: #3a6ea5; /* Standard Windows 2000/XP safe-color fallback blue */
+}
+
+/* Stand neck attached below the main monitor casing */
+.monitor-stand-neck {
+    position: absolute; /* Floating */
+    bottom: -15px; /* Drop below the monitor body */
+    width: 80px; /* Small pillar width */
+    height: 15px; /* Pillar height */
+    background-color: #c0c0c0; /* Gray plastic */
+    border: 2px solid #a0a0a0; /* Edge rules */
+    border-top: none; /* Merges visually into the monitor */
+    border-radius: 0 0 10px 10px; /* Curve the base attachment */
+    left: 50%; /* Position technique */
+    transform: translateX(-50%); /* Counter weight to lock exactly horizontal center */
+}
+
+/* Stand base plate sitting on the desk */
+.monitor-stand-base {
+    position: absolute; 
+    bottom: -20px; /* Lowest drop point */
+    width: 100px; /* Wide footprint */
+    height: 8px; /* Very thin plate */
+    background-color: #e0dfdf; /* Match casing plastic */
+    border: 1px solid #a0a0a0; /* Thin border definition */
+    border-radius: 50%; /* Oval plate visual representation */
+    left: 50%; /* Centering logic */
+    transform: translateX(-50%);
+}
+
+/* General dialog section formatting (spacing between disparate properties blocks) */
+.settings-section {
+    margin-top: 30px; /* Add high offset to divide modules vertically */
+}
+
+/* Unlocked advanced text styling */
+.settings-unlocked-text {
+    font-size: 10px; /* Very small footnote text */
+    color: #2a6a2d; /* Green hue for positive affirmation text */
+    margin-top: 10px; 
+    font-style: italic; /* Differentiation stylization */
+}
+
+/* The listview window containing the background image themes */
+.settings-list-box {
+    border: 1px solid #7f9db9; /* Standard input inset border */
+    width: 100%; /* Stretch full length of tab */
+    height: 120px; /* Restrict height */
+    overflow-y: auto; /* Provide scrollbars heavily mimicking native win32 list views */
+    background-color: #fff; /* Solid white list block */
+}
+
+/* Individual list item simulating standard OS selection */
+.settings-list-item {
+    padding: 2px 5px; /* Highlight size target */
+    cursor: pointer; /* Indication */
+    display: flex; /* Centers text and icon laterally */
+    align-items: center; 
+    color: #000; /* Regular text color */
+    background-color: #fff; /* Solid list backing */
+}
+
+/* Override rules for active/clicked rows */
+.settings-list-item.selected {
+    background-color: #316ac5; /* Standard Windows highlight default blue */
+    color: #fff; /* Readability inversion */
+}
+
+/* The small square box/icon appearing next to list items */
+.settings-list-icon {
+    display: inline-block; /* Behave like text but take grid sizes */
+    width: 10px; /* Fixed size */
+    height: 10px;
+    margin-right: 5px; /* Nudge word off the icon */
+    background-color: #316ac5; /* Fill the square blue */
+    border: 1px solid #000; /* Strict contrast black edge */
+}
+
+/* Standard reusable XP button styling */
+.xp-button {
+    min-width: 75px; /* Standardize size even for short words like "OK" */
+    padding: 3px 15px; /* Gives nice flat rectangular shape */
+    cursor: pointer; /* Interaction affordance */
+}
+
+/* Rules for disabled button states */
+.xp-button:disabled {
+    cursor: default; /* Deny interaction affordance */
+    color: #a0a0a0; /* Washout grey text */
+}
+
+/* Global button layout anchoring "Apply/OK/Cancel" at the bottom right corner */
+.settings-bottom-actions {
+    display: flex; /* Horizontal flow */
+    justify-content: flex-end; /* Hard flush to the right boundary */
+    padding-top: 15px; /* Separation from options above */
+    gap: 8px; /* Standard separation between action buttons */
+}

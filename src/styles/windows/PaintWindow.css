@@ -1,0 +1,198 @@
+/* =========================================================
+   PaintWindow.css
+   Simulates the classic Microsoft Paint layout.
+   ========================================================= */
+
+/* Main canvas background container */
+.paint-window-container {
+    display: flex; /* Sets up flexbox to order menu, tools, and canvas vertically */
+    flex-direction: column;
+    height: 100%; /* Adapts to full height of parent window */
+    background-color: #c0c0c0; /* Uses standard Windows UI gray base color */
+    font-family: Arial, sans-serif; /* System sans-serif for any text nodes */
+    font-size: 12px; /* Uniform small UI font */
+}
+
+/* Common inset and outset borders mimicking Windows 3D effects */
+
+/* An outset border creates the illusion of an element popping out of the screen */
+.paint-border-outset {
+    border-top: 2px solid #fff; /* Highlight on the top simulating a light source from above-left */
+    border-left: 2px solid #fff; /* Highlight on left edge */
+    border-right: 2px solid #808080; /* Shadow on the right side */
+    border-bottom: 2px solid #808080; /* Shadow on the bottom edge */
+}
+
+/* An inset border creates the illusion of an element being sunken into the screen */
+.paint-border-inset {
+    border-top: 2px solid #808080; /* Shadow at top simulating cavity */
+    border-left: 2px solid #808080; /* Shadow at left */
+    border-right: 2px solid #fff; /* Highlight at right where light hits the internal bevel */
+    border-bottom: 2px solid #fff; /* Highlight at bottom */
+}
+
+/* Application menu strip (File, Edit, View, Image...) */
+.paint-menu-bar {
+    display: flex; /* Aligns menu items horizontally */
+    border-bottom: 1px solid #808080; /* Single dividing line separating menu from workspace */
+    padding: 2px 0; /* Minor vertical spacing */
+    background-color: #c0c0c0; /* Gray base matching rest of app */
+}
+
+/* Standard clickable text in the menu */
+.paint-menu-item {
+    padding: 2px 6px; /* Click target dimensioning */
+    cursor: pointer; /* Shows hand interactable cursor */
+    font-family: "MS Sans Serif", Arial, sans-serif; /* True Windows GUI font */
+    font-size: 13px; /* Default sizing */
+}
+
+/* The primary horizontal layout dividing tools from canvas */
+.paint-body {
+    display: flex; /* Let tools be on left, canvas stretch on right */
+    flex: 1; /* Expands to fill unused vertical space below menu */
+    padding: 2px; /* Tiny spacing from edge */
+    overflow: hidden; /* Prevents whole window from getting scrollbars natively */
+}
+
+/* Left side toolbar containing drawing tools (pencil, fill, text, etc) */
+.paint-toolbar-left {
+    width: 60px; /* Hardcoded width to house exactly two columns of standard MS paint tools */
+    padding: 2px; /* Slight bump off sides */
+    display: flex; /* Stack tool grid and tool options vertically */
+    flex-direction: column;
+    align-items: center; /* Center everything inside */
+    background-color: #c0c0c0; /* GUI gray */
+}
+
+/* Wraps the iconic 2xN tool squares */
+.paint-tools-grid {
+    display: flex; /* Aligns children inline */
+    flex-wrap: wrap; /* Pushes tools onto new rows automatically given width restrictions */
+    width: 56px; /* 2 columns times ~24px plus margin */
+    gap: 0; /* Flush fitting */
+}
+
+/* Standard tool button square */
+.paint-tool-btn {
+    width: 24px; /* Fixed square width */
+    height: 24px; /* Fixed square height */
+    display: flex; /* Flex center internal iconography */
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    cursor: pointer; /* Interactive marker */
+    background-color: #c0c0c0; /* Match background */
+    font-size: 14px; /* Icon/Emoji default size */
+}
+
+/* The context box below tools showing line weights, brush shapes, etc */
+.paint-tool-options-box {
+    margin-top: 5px; /* Offset below grid */
+    width: 48px; /* Fixed bounds slightly thinner than grid block */
+    height: 60px; /* Box height */
+}
+
+/* Center framing for the canvas area */
+.paint-canvas-wrapper {
+    flex: 1; /* Stretch all remaining unused right-side space */
+    background-color: #808080; /* The dark gray "desk" background the canvas sits on */
+    padding: 4px; /* Distance from the white paper to the window frame */
+    overflow: auto; /* Generates scrollbars if the inner sheet is larger than the wrapper */
+    outline: 1px solid #808080; /* Hard edge binding */
+}
+
+/* The actual "white paper" drawing sheet */
+.paint-canvas-sheet {
+    width: 100%; /* Defaults to full wrapper width, realistically could be fixed */
+    height: 100%; /* Defaults to full wrapper height */
+    background-color: #fff; /* Standard paper color */
+    position: relative; /* Acts as coordinate 0,0 for absolutely placed resize handles */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* Handle grips on the canvas corners used for scaling the paper */
+.paint-resize-handle-br {
+    position: absolute; /* Lock to paper edge */
+    right: -4px; /* Hang half off the sheet edge */
+    bottom: -4px; /* Hang half off the bottom sheet edge */
+    width: 5px; /* Classic tiny 5px square hit area */
+    height: 5px; 
+    background-color: #000; /* Solid black resize nub */
+    cursor: nwse-resize; /* Diagonal resize cursor arrows */
+    z-index: 10; /* Put in front of any drawings that reach the edge */
+}
+
+.paint-resize-handle-r {
+    position: absolute; /* East-side resizer */
+    right: -4px; /* Off edge */
+    top: 50%; /* Middle vertically */
+    width: 4px; /* Resizer nub */
+    height: 4px;
+    background-color: #000; /* Resizer nub */
+}
+
+.paint-resize-handle-b {
+    position: absolute; /* South-side resizer */
+    bottom: -4px; /* Off edge bottom */
+    left: 50%; /* Center horizontally */
+    width: 4px; /* Resizer nub */
+    height: 4px;
+    background-color: #000; /* Resizer nub */
+}
+
+/* Bottom color palette section housing primary/secondary colours and swatches */
+.paint-palette-area {
+    display: flex; /* Layout horizontally */
+    padding: 4px; /* Clearance around the palette box */
+    border-top: 1px solid #808080; /* Division line from main canvas */
+    background-color: #c0c0c0; /* GUI gray */
+}
+
+/* The active selected colors presentation box (the two overlapping squares) */
+.paint-active-colors {
+    width: 40px; /* Area holding the overlaps */
+    height: 40px; 
+    position: relative; /* Relative anchor to manually position the two squares */
+    margin-right: 6px; /* Gap before the grid of usable swatches */
+}
+
+/* Base style for individual color swatches (both active and in the grid) */
+.paint-color-swatch {
+    width: 16px; /* Standard miniature square */
+    height: 16px; 
+    border-right-color: #fff; /* Hardcoded 3D border logic for swatches */
+    border-bottom-color: #fff; 
+    border-top-color: #444; 
+    border-left-color: #444; 
+}
+
+/* Primary color overlapping swatch (usually left click tool) */
+.paint-color-primary {
+    position: absolute; /* Manual float */
+    top: 4px; /* Offset top left */
+    left: 4px; 
+    width: 16px; 
+    height: 16px; 
+}
+
+/* Secondary color underlapping swatch (usually right click tool) */
+.paint-color-secondary {
+    position: absolute; /* Manual float */
+    top: 10px; /* Offset further down and right so it sits behind primary */
+    left: 10px; 
+    width: 16px; 
+    height: 16px; 
+}
+
+/* Help text / coordinate status bar at the very bottom */
+.paint-status-bar {
+    padding: 2px 4px; /* Very thin */
+    font-size: 11px; /* Micro text */
+    display: flex; /* Space between message and coordinates */
+    justify-content: space-between; 
+    color: #000; /* Black text */
+    border-top-color: #808080; /* Embedded UI 3D groove */
+    border-left-color: #808080; 
+}

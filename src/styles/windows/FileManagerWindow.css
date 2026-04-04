@@ -1,0 +1,200 @@
+/* =========================================================
+   FileManagerWindow.css
+   Simulates the classic Windows 3.1 / 95 File Manager interface.
+   ========================================================= */
+
+/* Main window container */
+.fm-window-container {
+    display: flex; /* Flex layout to stack menu, toolbar, and content */
+    flex-direction: column; /* Stack vertically */
+    height: 100%; /* Stretch to parent window bounds */
+    background-color: #c0c0c0; /* Standard Win95 gray */
+    font-family: Arial, sans-serif; /* System font for file manager */
+    font-size: 12px; /* Standard small font size */
+}
+
+/* Menu Bar at the very top (File, Disk, Tree, View, Options, Win, Help) */
+.fm-menu-bar {
+    display: flex; /* Layout menu items horizontally */
+    border-bottom: 1px solid #000; /* Separator line between menu and toolbar */
+    padding: 2px 0; /* Vertical breathing room */
+}
+
+/* Individual clickable terms inside the menu bar */
+.fm-menu-item {
+    padding: 2px 8px; /* Gives a clickable rectangular area */
+    cursor: pointer; /* Visually indicates interactivity */
+    font-family: "MS Sans Serif", Arial, sans-serif; /* Native UI font */
+    font-size: 13px; /* Slightly larger than list views for menu items */
+}
+
+/* Toolbar containing the Drive selection icons */
+.fm-toolbar {
+    display: flex; /* Horizontal row for drives */
+    align-items: center; /* Center the drive icons vertically */
+    border-bottom: 1px solid #808080; /* Shadow line to create toolbar boundary */
+    padding: 4px 8px; /* Pad toolbar inwards */
+    gap: 15px; /* Separate groups of drives */
+}
+
+/* A single drive button (e.g. C:, D:) */
+.fm-drive-btn {
+    display: flex; /* Flex used to align drive icon with letter */
+    align-items: center; /* Vertically center icon and text */
+    border: 2px solid transparent; /* Reserve space for the active border so it doesn't jump */
+    padding: 2px; /* Standard click target padding */
+}
+
+/* Specific styling for the currently selected drive */
+.fm-drive-btn.active {
+    border: 2px solid #000; /* Solid black border indicating selection */
+    background-color: #e0e0e0; /* Gives a slight inset/highlight background */
+}
+
+/* Toolbar actions pushed to the right side */
+.fm-toolbar-actions {
+    margin-left: auto; /* Pushes these to the far right of the flex container */
+    display: flex;
+    gap: 8px; /* Gap between actionable buttons */
+}
+
+/* Base style for small square toolbar interaction buttons */
+.fm-toolbar-btn {
+    width: 20px; /* Fixed small square width */
+    height: 20px; /* Fixed small square height */
+    border: 1px solid #808080; /* Flat gray outline */
+    background-color: #e0e0e0; /* Lighter background than the container */
+    text-align: center; /* Center any text/icon inside */
+}
+
+/* Variations for interactive toolbar buttons */
+.fm-toolbar-btn.clickable {
+    cursor: pointer; /* Change cursor on hover */
+}
+
+/* Main Split View: Holds the left folder tree and right file list */
+.fm-split-view {
+    display: flex; /* Flex to allow horizontal splitting of the space */
+    flex: 1; /* Consume all vertical space left over from toolbars */
+    padding: 4px; /* Space between the outer gray window and the inner white panes */
+    gap: 4px; /* Gap between the two panes */
+    overflow: hidden; /* Prevent spilling outside bounds */
+}
+
+/* Generic Pane Style applied to both left and right split areas */
+.fm-pane {
+    background-color: #fff; /* White document background */
+    border: 2px solid #000; /* Heavy black border */
+    border-right-color: #fff; /* Recreates the 3D 'sunken' border effect */
+    border-bottom-color: #fff; /* Recreates the 3D 'sunken' border effect */
+    outline: 1px solid #808080; /* Defines the inner edge of the sunken effect */
+    overflow-y: auto; /* Always scroll if items exceed pane height */
+}
+
+/* Left Pane - The expanding/collapsing folder directory Tree View */
+.fm-left-pane {
+    flex: 0 0 200px; /* Fix width to 200px, don't allow growing/shrinking automatically */
+    padding: 5px; /* Inner margin around the tree text */
+    font-family: "MS Sans Serif", Arial, sans-serif; /* System font */
+}
+
+/* The root drive label (usually at the very top of the tree) */
+.fm-tree-root {
+    font-weight: bold; /* Darken for emphasis */
+    margin-bottom: 4px; /* Space below the root drive label */
+}
+
+/* A single line representing a folder inside the tree */
+.fm-tree-node {
+    display: flex; /* Flex layout to align [+] icon, folder icon, and text on one line */
+    align-items: center; /* Vertically center them */
+    cursor: pointer; /* Indicates it can be clicked to open/select */
+    padding: 2px 4px; /* Highlightable area padding */
+    user-select: none; /* Disables standard text selection copying to mimic a UI control */
+    color: #000; /* Standard text color */
+    background-color: transparent; /* No background unless active */
+}
+
+/* When a folder is currently clicked/open in the right pane */
+.fm-tree-node.active {
+    background-color: #0000a8; /* Deep blue background highlight */
+    color: #fff; /* Turn text white to remain readable */
+}
+
+/* The plus/minus box or folder graphic */
+.fm-tree-icon {
+    margin-right: 5px; /* Pushes the text away from the icon */
+    font-family: "Courier New", Courier, monospace; /* Monospace blocky font for +/- classic icon */
+    width: 20px; /* Fixed space for the icon so text lines up perfectly below each other */
+    text-align: center; /* Centered in its box */
+    cursor: pointer;
+}
+
+/* Ensure the +/- preserves text color if row is active vs inactive */
+.fm-tree-node.active .fm-tree-icon {
+    color: #fff; /* Ensures the +/- is white when highlighted in blue */
+}
+
+.fm-tree-node:not(.active) .fm-tree-icon {
+    color: #000; /* Default black otherwise */
+}
+
+/* Used to pad out nested files when there's no +/- icon for them */
+.fm-tree-spacer {
+    width: 25px; /* Take up the same horizontal space as a missing tree-icon */
+}
+
+/* Right Pane - The actual files contained within the selected folder */
+.fm-right-pane {
+    flex: 1; /* Stretch to fill all the remaining horizontal space not used by the left pane */
+    padding: 5px; /* Internal content padding */
+    display: flex; /* Stacks column headers and the list contents */
+    flex-direction: column;
+}
+
+/* Standard file list row */
+.fm-list-item {
+    display: flex; /* Puts name, size, date side-by-side */
+    cursor: pointer; /* Indication it can be selected */
+    padding: 2px; /* Pad height of the row */
+    color: #000; /* Text colour */
+    background-color: #fff; /* Background color */
+}
+
+/* Selected file state */
+.fm-list-item.active {
+    background-color: #0000a8; /* Windows blue highlight */
+    color: #fff; /* Ensure text remains readable */
+}
+
+/* Column styles mimicking fixed table columns */
+.fm-list-col-name {
+    width: 150px; /* Name takes priority width */
+    white-space: nowrap; /* Prevent multiline */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Inject "..." */
+}
+
+.fm-list-col-size {
+    width: 80px; /* Size width */
+    text-align: right; /* Values align right for easy number comparison */
+}
+
+.fm-list-col-date {
+    width: 90px;
+    text-align: right; /* Value align */
+}
+
+.fm-list-col-attr {
+    width: 50px;
+    text-align: center; /* Readonly/System indicators */
+}
+
+/* Status Bar at the bottom displaying sizes and free space */
+.fm-status-bar {
+    border-top: 1px solid #808080; /* Separator line above status text */
+    padding: 2px 8px; /* Internal padding */
+    display: flex; /* Layout parts left and right */
+    justify-content: space-between; /* Pushes the left data and right data apart */
+    color: #000; /* Standard black */
+}
