@@ -2,8 +2,6 @@ import React from 'react';
 
 const Contact = () => (
     <>
-        <h1 className="tab blink">Contact Me</h1>
-
         <div id="contact-info">
             <p>If you have any questions or would like to reach out, feel free to contact me via email:</p>
             <p><strong>Email: <a href="mailto:rogeliom5801@gmail.com">rogeliom5801@gmail.com</a></strong></p>

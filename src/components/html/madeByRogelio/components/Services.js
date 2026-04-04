@@ -2,7 +2,6 @@ import React from 'react';
 
 const Services = () => (
     <>
-        <h1 className="tab blink">:D</h1>
         <p>Core Competencies.</p>
         <hr className="section-divider" />
         <img className="intro about-image" src="https://i.imgur.com/dA9K3Er.gif" alt="Animated introduction image" />

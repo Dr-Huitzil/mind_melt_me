@@ -21,10 +21,21 @@ export default function MadeByRogelio() {
         }
     };
 
+    const getPageTitle = () => {
+        switch (currentPage) {
+            case 'home': return "Welcome to my Portfolio!";
+            case 'services': return ":D";
+            case 'resume': return "Looking for a Marketing Specialist?";
+            case 'contact': return "Contact Me";
+            default: return "Welcome to my Portfolio!";
+        }
+    };
+
     return (
-        <div className="made-by-rogelio-wrapper center bg2 max">
+        <div className="made-by-rogelio-wrapper center bg2">
             <WorldClock />
             <div id="main">
+                <h1 className="blink" style={{ marginTop: '20px' }}>{getPageTitle()}</h1>
                 <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 {renderPage()}
                 <Footer />

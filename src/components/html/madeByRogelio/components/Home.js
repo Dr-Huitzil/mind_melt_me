@@ -2,7 +2,6 @@ import React from 'react';
 
 const Home = () => (
     <>
-        <h1 className="tab blink">Welcome to my Portfolio!</h1>
         <p>From California, USA comes:</p>
 
         <img className="intro about-image" src="https://i.imgur.com/Yxwum0n.gif" alt="90s-style animated name image" width="500" height="auto" />
