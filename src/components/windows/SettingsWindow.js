@@ -29,7 +29,7 @@ const SettingsWindow = ({ onClose, onMinimize, zIndex, onFocus, minimized, setWa
     };
 
     const handlePasswordSubmit = () => {
-        if (passwordInput === 'melt') {
+        if (passwordInput === process.env.REACT_APP_ADMIN_PASSWORD) {
             setIsUnlocked(true);
             setShowPasswordPrompt(false);
             setCustomUrl(selectedPreset.url); // Pre-fill with current selection if unlocked
