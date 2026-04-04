@@ -1,5 +1,6 @@
 import React from 'react';
 import WindowFrame from './WindowFrame';
+import '../../styles/windows/ContactWindow.css';
 
 const ContactWindow = ({ onClose, onMinimize, zIndex, onFocus, minimized }) => {
 

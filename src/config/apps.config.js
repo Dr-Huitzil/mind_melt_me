@@ -13,7 +13,7 @@ export const appsConfig = {
         windowName: 'About',
         component: About,
         desktopIcon: require('../assets/desktop-icons/me-icon.png'),
-        taskbarIcon: '',
+        taskbarIcon: '👤',
         displayName: 'About',
         showOnDesktop: true,
         showInStartMenu: true

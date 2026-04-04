@@ -1,58 +1,50 @@
 // src/components/windows/ChatboxWindow.js
 import React, { useState } from 'react';
-import Draggable from 'react-draggable';
-import { ResizableBox } from 'react-resizable';
-import 'react-resizable/css/styles.css';
+import WindowFrame from './WindowFrame';
 import '../../styles/windows/about.css';
 
-const ChatboxWindow = ({ onClose }) => {
+const ChatboxWindow = ({ onClose, onMinimize, zIndex, onFocus, minimized }) => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
-    const [windowPosition] = useState({ x: 0, y: 0 });
-    const [windowSize] = useState({ width: 400, height: 300 });
 
     const handleSendMessage = () => {
+        if (!input.trim()) return;
+        // Ensure state immutability by creating a new array when adding messages
         setMessages([...messages, { text: input, sender: 'User' }]);
         setInput('');
     };
 
     return (
-        <Draggable handle=".window-title-bar">
-            <div style={{ position: 'absolute', left: windowPosition.x, top: windowPosition.y }}>
-                <ResizableBox
-                    width={windowSize.width}
-                    height={windowSize.height}
-                    minConstraints={[300, 200]}
-                    maxConstraints={[600, 400]}
-                    className="resizable-box"
-                >
-                    <div className="window">
-                        <div className="window-title-bar">
-                            <span className="window-title">Chatbox</span>
-                            <div>
-                                <button className="window-close-button" onClick={onClose}>X</button>
-                            </div>
-                        </div>
-                        <div className="window-content">
-                            <div className="chatbox-messages">
-                                {messages.map((message, index) => (
-                                    <div key={index} className={`chatbox-message ${message.sender}`}>
-                                        {message.text}
-                                    </div>
-                                ))}
-                            </div>
-                            <input
-                                type="text"
-                                value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-                            />
-                            <button onClick={handleSendMessage}>Send</button>
-                        </div>
+        // REFACTOR: Abstracted Draggable and Resizable layout requirements into WindowFrame component
+        <WindowFrame
+            title="Chatbox"
+            minimized={minimized}
+            onClose={onClose}
+            onMinimize={onMinimize}
+            zIndex={zIndex}
+            onFocus={onFocus}
+            defaultSize={{ width: 400, height: 350 }}
+            minConstraints={[300, 200]}
+        >
+            <div className="chatbox-messages" style={{ flex: 1, padding: '10px', overflowY: 'auto' }}>
+                {messages.map((message, index) => (
+                    <div key={index} className={`chatbox-message ${message.sender}`} style={{ marginBottom: '8px' }}>
+                        <strong>{message.sender}:</strong> {message.text}
                     </div>
-                </ResizableBox>
+                ))}
             </div>
-        </Draggable>
+            <div style={{ padding: '10px', display: 'flex', gap: '5px', borderTop: '1px solid #ccc' }}>
+                <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                    style={{ flex: 1, padding: '5px' }}
+                    placeholder="Type a message..."
+                />
+                <button onClick={handleSendMessage} style={{ padding: '5px 15px' }}>Send</button>
+            </div>
+        </WindowFrame>
     );
 };
 

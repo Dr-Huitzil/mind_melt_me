@@ -177,7 +177,7 @@
     width: 30px !important;
     height: 30px !important;
     bottom: -12px !important;
-    right: -1px !important;
+    right: -12px !important;
     cursor: nwse-resize;
     transform: none !important; 
     z-index: 1000;

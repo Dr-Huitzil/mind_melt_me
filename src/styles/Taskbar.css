@@ -1,174 +1,256 @@
 /* Unified Taskbar and Start Menu Styles */
 :root {
-  --primary-blue: #034b92;
-  --dark-blue: #003366;
-  --darker-blue: #002244;
-  --yellow: #ffd91b;
-  --light-cream: #f9f6e7;
-  --white: #fff;
-  --black: #000;
-  --navy: navy;
-  --taskbar-height: 40px;
+  --primary-blue: #034b92; /* Main blue used for the start menu / taskbar */
+  --dark-blue: #003366; /* Darker variant for borders/shadows */
+  --darker-blue: #002244; /* Darkest blue for active states */
+  --yellow: #ffd91b; /* Highlight yellow color */
+  --light-cream: #f9f6e7; /* Cream color for text or backgrounds */
+  --white: #fff; /* Standard white */
+  --black: #000; /* Standard black */
+  --navy: navy; /* Classic windows navy */
+  --taskbar-height: 40px; /* Globally defines the taskbar height so we can offset it on the desktop */
 }
 
 /* Taskbar Container */
 .taskbar-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+  position: fixed; /* Keeps the taskbar fixed at the bottom relative to the viewport */
+  bottom: 0; /* Align to bottom edge */
+  left: 0; /* Align to left edge */
+  width: 100%; /* Spans the entire width of the screen */
+  z-index: 1000; /* Ensures taskbar is always in front of windows */
 }
 
 /* Taskbar Styles */
 .taskbar {
-  background: linear-gradient(to bottom, #245edb, #2f73e5 50%, #2f73e5 50%, #245edb);
-  height: var(--taskbar-height);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  box-shadow: 0 -1px 0 #000;
-  position: relative;
-  z-index: 1000
+  background: linear-gradient(to bottom, #245ede 0%, #3f8cf3 4%, #245ede 8%, #2053ce 50%, #1a42a8 90%, #082d6b 100%); /* Simulates the glossy Windows XP blue taskbar aesthetic */
+  height: var(--taskbar-height); /* Uses variable height */
+  display: flex; /* Flexbox to place start button, icons, and clock in a row */
+  justify-content: space-between; /* Pushes children apart (start left, icons middle, clock right) */
+  align-items: center; /* Vertically centers things in the taskbar */
+  padding: 0; /* No inner padding for edge-to-edge look */
+  border-top: 1px solid #7cb9f6; /* Lighter top line for 3D effect */
+  position: relative; /* Anchor for anything absolutely positioned inside it */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Drop shadow effect */
 }
 
-/* Styles for the start button. */
+/* Start Button Styles */
 .start-button {
-  /* A green gradient for the classic "Start" button look. */
-  background: linear-gradient(to bottom, #39b64a, #45e058);
-  border: 1px solid #1c8c2e; /* A dark green border. */
-  border-radius: 3px; /* Slightly rounded corners. */
-  color: white; /* White text. */
-  padding: 10px 20px; /* Padding inside the button. */
-  cursor: pointer; /* Changes the cursor to a pointer on hover. */
-  font-size: 16px; /* The font size of the button text. */
-  font-weight: bold; /* Bold text. */
-  display: flex; /* Uses flexbox for alignment. */
-  align-items: center; /* Centers the text vertically. */
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* A shadow for the text. */
-  z-index: 1001; /* Ensures the start button is above the taskbar. */
-  height : var(--taskbar-height);
-  position: fixed;
+  background: linear-gradient(to bottom, #44ba54 0%, #36a443 14%, #3eb64d 20%, #2e913a 70%, #24752c 100%); /* Classic Windows XP Green glossy gradient */
+  position: fixed; /* Locks start button to bottom left */
   left: 0;
   bottom: 0;
+  height: var(--taskbar-height); /* Match the taskbar exactly */
+  padding: 0 25px 0 10px; /* Space inside the start button to fit text and icon */
+  cursor: pointer; /* Interaction affordance */
+  font-size: 22px; /* Large font size for "start" text */
+  font-style: italic; /* Signature Windows Start text is italicized */
+  font-weight: bold; /* Bold text */
+  font-family: "Franklin Gothic Medium", "Arial", sans-serif; /* True Windows XP start font */
+  color: white; /* Text color */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Strong shadow to make text pop over the green */
+  display: flex; /* Centers contents vertically */
+  align-items: center;
+  z-index: 1001; /* Must sit above taskbar elements */
+  border: none; /* No default browser button border */
+  border-radius: 0 15px 15px 0; /* Caps the right side with a rounded edge, flat left side */
+  box-shadow: inset 1px 1px 3px rgba(255, 255, 255, 0.6), inset -1px -1px 3px rgba(0, 0, 0, 0.5), 2px 0 5px rgba(0, 0, 0, 0.3); /* Complex 3D shading for the button */
 }
 
-/* Styles for the start button when hovered over. */
 .start-button:hover {
-  /* Reverses the gradient on hover to give a slight interactive effect. */
-  background: linear-gradient(to bottom, #45e058, #39b64a);
+  background: linear-gradient(to bottom, #52d264 0%, #43c151 14%, #4bcc5a 20%, #3ca049 70%, #2e8b38 100%); /* Lighter green on hover */
+}
+
+.start-button:active {
+  background: linear-gradient(to top, #44ba54 0%, #2e913a 100%); /* Invert gradient to look pressed down */
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Deepen inner shadow when clicked */
 }
 
 /* Taskbar Icons Container */
 .taskbar-icons {
-  display: flex; /* Uses flexbox for alignment. */
-  align-items: center; /* Centers the icons vertically. */
-  flex-grow: 1; /* Allows the container to grow and fill the available space. */
-  overflow-x: auto; /* Adds a horizontal scrollbar if there are too many icons. */
-  margin-left: 10px; /* Adds some space to the left of the icons. */
+  display: flex; /* Stacks open program icons horizontally */
+  align-items: center;
+  flex-grow: 1; /* Takes up all available space between start and clock */
+  overflow-x: auto; /* Allow scrolling if too many apps are open */
+  padding-left: 120px; /* Pushes icons past the absolutely positioned start button */
+  padding-right: 15px; /* Spacing before right-side elements */
+  height: 100%; /* Fill taskbar height */
 }
 
 .taskbar-icon {
-  color: var(--white);
-  margin: 0 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-  min-width: 80px;
-  text-align: center;
+  background: linear-gradient(to bottom, #3980f4 0%, #266cec 20%, #1d5ecf 100%); /* Default inactive blue gradient */
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Faint highlight border */
+  border-radius: 3px; /* Slightly rounded corners */
+  color: white; /* Text color */
+  margin: 0 3px; /* Margin between each active task icon */
+  padding: 0 12px; /* Pad text */
+  cursor: pointer; /* Indicates clickability */
+  min-width: 140px; /* Ensure buttons don't shrink too small */
+  max-width: 160px; /* Let them grow somewhat but restrict max size */
+  height: 28px; /* Fixed height to fit comfortably inside the 40px taskbar */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  font-family: Tahoma, sans-serif; /* Classic UI font */
+  font-size: 13px; /* Classic font size */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6); /* Slight text pop */
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3); /* Inner border highlight */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Use "..." for overflowing text */
+  white-space: nowrap; /* Don't wrap text to the next line */
 }
 
-/* Styles for individual application icons in the taskbar. */
-/* .taskbar-icon {
-  color: white; /* White text color. 
-  margin: 0 2px; /* Small margin between icons. 
-  padding: 3px 10px; /* Padding inside the icon container. 
-  cursor: pointer; /* Changes the cursor to a pointer on hover. 
-  border: 1px solid #1c8c2e; /* A dark green border. 
-  /* A blue gradient that matches the taskbar. 
-  background: linear-gradient(to bottom, #245edb, #2f73e5);
-  border-radius: 3px; /* Slightly rounded corners
-  min-width: 120px; /* A minimum width for each icon container.
-  text-align: left; /* Aligns the text to the left. 
-  white-space: nowrap; /* Prevents the text from wrapping to the next line. 
-  overflow: hidden; /* Hides any text that overflows the container. 
-  text-overflow: ellipsis; /* Adds an ellipsis (...) to text that is too long. 
-} */
-
 .taskbar-icon.active {
-  /* A darker blue gradient to indicate the active window. */
-  background: linear-gradient(to bottom, #1e4cb3, #245edb);
-  border-color: #0c2b6b; /* A darker border color. */
+  background: linear-gradient(to bottom, #1d5ecf 0%, #1142a4 50%, #0d388f 100%); /* Darker 'pushed in' blue gradient */
+  box-shadow: inset 2px 3px 6px rgba(0, 0, 0, 0.7); /* Strong inner shadow showing it is selected */
+  border-color: rgba(255, 255, 255, 0.1); /* Dimmer border on active */
+  color: #eeeeee; /* Slightly dimmer text */
 }
 
 .taskbar-icon:hover {
-  /* Reverses the gradient on hover for a visual effect. */
-  background: linear-gradient(to bottom, #2f73e5, #245edb);
+  background: linear-gradient(to bottom, #4f91fb 0%, #3680fa 20%, #2a6ee3 100%); /* Brighter blue when hovered on non-active buttons */
 }
 
-/* Styles for the clock in the taskbar. */
+/* Taskbar Credit */
+.taskbar-credit {
+  color: #eeeeee; /* Dim text color */
+  font-size: 13px; /* Match icon label size */
+  font-family: Tahoma, sans-serif; /* Generic UI font */
+  padding: 0 12px; /* Spacing */
+  margin-right: 10px; /* Separate from clock/system tray */
+  height: 28px; /* Match height of open program buttons */
+  display: flex;
+  align-items: center; /* Vertically align text */
+  background: linear-gradient(to bottom, #1d5ecf 0%, #1142a4 50%, #0d388f 100%); /* Sits back with a darker gradient */
+  box-shadow: inset 2px 3px 6px rgba(0, 0, 0, 0.7); /* Inner shadow look */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Border to blend it in */
+  border-radius: 3px;
+  text-shadow: none; /* Remove shadow to not look like an active element */
+}
+
+.taskbar-credit a {
+  color: white; /* Links stand out in white */
+  text-decoration: underline; /* Standard link */
+  margin-left: 3px; /* Space before link */
+}
+
+.taskbar-credit a:hover {
+  text-decoration: none; /* Removes underline visually when mouse hovers */
+}
+
+/* System Clock */
 .taskbar-time {
-  color: white; /* White text color. */
-  font-size: 12px; /* A smaller font size for the clock. */
-  padding: 5px 10px; /* Padding around the clock. */
-  border-left: 1px solid #1c8c2e; /* A dark green line to the left of the clock. */
-  /* A blue gradient that matches the taskbar. */
-  background: linear-gradient(to bottom, #245edb, #2f73e5);
-  text-align: center; /* Centers the time text. */
+  color: white; /* White text for contrast against blue tray */
+  font-size: 13px; /* Standard tray font size */
+  font-family: Tahoma, sans-serif; /* UI Font */
+  padding: 0 15px; /* Spacers keeping it off the edge */
+  height: 100%; /* Stretch vertically to match taskbar */
+  display: flex;
+  align-items: center; /* Center the time text vertically */
+  background: linear-gradient(to bottom, #1198e9 0%, #0e7ece 100%); /* System tray background color */
+  border-left: 1px solid #0b5aa2; /* Separator line on the left side */
+  box-shadow: inset 1px 0 1px rgba(255, 255, 255, 0.3); /* Small highlight on the separator */
+  text-shadow: none; /* No shadow for crispness */
 }
 
 /* Start Menu Styles */
 .start-menu {
-  position: fixed;
-  left: 10px;
-  bottom: 50px;
-  width: 200px;
-  background-color: var(--light-cream);
-  border: 1px solid var(--black);
-  display: flex;
+  position: fixed; /* Pops out relative to window */
+  left: 0; /* Anchored to bottom left */
+  bottom: var(--taskbar-height); /* Appears exactly on top of the taskbar */
+  width: 240px; /* Fixed width of the start menu block */
+  background-color: #c0c0c0; /* Standard Win95/98 gray */
+  border-top: 2px solid #fff; /* Bright top edge for 3D */
+  border-left: 2px solid #fff; /* Bright left edge for 3D */
+  border-right: 2px solid #000; /* Dark right edge for 3D pop out */
+  border-bottom: 2px solid #000; /* Dark bottom edge for 3D pop out */
+  display: flex; /* Row layout for sidebar vs items */
+  box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #dfdfdf; /* Inner rim 3d effect */
+  z-index: 1000; /* Stays above desktop icons */
+  padding: 2px; /* Pad inside to avoid border overlap */
 }
 
 .start-strip {
-  background-color: var(--navy);
-  width: 25px;
-  height: 300px;
-  float: left;
-  margin: 1px;
+  background-color: var(--navy); /* The classic blue vertical banner on the left */
+  width: 25px; /* Narrow vertical stripe */
+  margin: 1px; /* Gap around it */
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Text aligns to bottom */
 }
 
 .start-strip-rotate {
-  transform: rotate(180deg);
-  color: var(--white);
-  font-size: 20px;
+  transform: rotate(180deg); /* Text needs to be flipped vertically */
+  color: var(--white); /* White text against navy */
+  font-size: 20px; /* Large font */
   text-align: left;
-  writing-mode: vertical-rl;
-  height: 100%;
-  display: flex;
-  align-items: center;
+  writing-mode: vertical-rl; /* Tells browser to render text running vertically */
 }
 
 .start-menu-text {
-  overflow: hidden;
-  line-height: 17px;
-  padding: 10px;
-  width: 100%;
+  flex: 1; /* Takes the rest of the menu width besides the strip */
+  padding: 2px;
+  display: flex;
+  flex-direction: column; /* Stack menu items in a column */
+  justify-content: flex-end; /* Pin items to the bottom if few exist */
 }
 
 .menu-child {
-  display: block;
-  padding: 5px 10px;
-  color: var(--black);
+  display: flex; /* Item layout */
+  align-items: center; /* Horizontally center icon with text */
+  padding: 6px 10px; /* Item padding for clickable area */
+  color: #000; /* Black text */
   text-decoration: none;
-  border-radius: 3px;
+  font-family: "MS Sans Serif", Arial, sans-serif; /* System font */
+  font-size: 13px; /* Base system font size */
+  cursor: pointer; /* Show it responds */
+  position: relative; /* Base for arrow or submenus */
 }
 
-.menu-child:hover {
-  background-color: var(--navy);
-  color: var(--white);
+.menu-icon {
+  margin-right: 10px; /* Separate icon from words */
+  font-size: 16px; /* Icon size */
+  width: 20px; /* Standardize icon boundary so text lines up */
+  text-align: center; /* Center emojis/icons inside their fixed width */
+}
+
+.menu-text {
+  flex: 1; /* Text takes remaining width pushing arrows right */
+}
+
+.menu-child:hover,
+.menu-child:focus,
+.submenu-trigger[aria-expanded="true"] {
+  background-color: #0000a0; /* Standard selection blue background */
+  color: #fff; /* Inverse text to white for contrast against blue */
+}
+
+.menu-divider {
+  border-top: 1px solid #808080; /* Shadow line */
+  border-bottom: 1px solid #fff; /* Highlight line, creating 3d groove */
+  margin: 3px 2px; /* Space between menu groups */
+}
+
+.submenu-arrow {
+  font-size: 10px; /* Small indicating arrow */
+  margin-left: auto; /* Pushes arrow entirely to the right */
+}
+
+/* All Apps Submenu */
+.all-apps-submenu {
+  position: absolute; /* Relative to its trigger item */
+  left: 100%; /* Anchor to the right edge of the parent menu */
+  top: -3px; /* Push slightly up to align */
+  width: 200px; /* Submenu width */
+  background-color: #c0c0c0; /* Gray bg */
+  border-top: 2px solid #fff; /* 3D Box logic */
+  border-left: 2px solid #fff; /* 3D Box logic */
+  border-right: 2px solid #000; /* 3D Box logic */
+  border-bottom: 2px solid #000; /* 3D Box logic */
+  box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #dfdfdf, 3px 3px 5px rgba(0,0,0,0.4); /* Submenu cast shadow onto the window/desktop */
+  display: flex;
+  flex-direction: column; /* Stack submenu items */
+  padding: 2px;
+  z-index: 1001; /* Show above main start menu */
 }
 
 /* Body styles remain in global.css */
