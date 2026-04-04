@@ -1,0 +1,73 @@
+/* =========================================================
+   PowerOptionsWindow.css
+   Simulates the classic Windows shutdown dialog interface.
+   ========================================================= */
+
+/* The main gray container holding the shutdown tools */
+.power-options-container {
+    display: flex; /* Setup flexible box layout */
+    flex-direction: column; /* Stack inner components vertically */
+    height: 100%; /* Stretches to fill parent dialog */
+    background-color: #c0c0c0; /* Classic Windows 95/98 gray background */
+    padding: 15px; /* Adds space around the internal edge */
+    align-items: center; /* Horizontally centers content */
+    justify-content: center; /* Vertically centers content */
+    font-family: "MS Sans Serif", Arial, sans-serif; /* System GUI font */
+    font-size: 13px; /* System GUI readable size */
+}
+
+/* The header row with the text and computer icon */
+.power-options-header {
+    margin-bottom: 20px; /* Space between header and buttons */
+    display: flex; /* Flex layout to align icon next to text */
+    align-items: center; /* Vertically align icon and text */
+    gap: 15px; /* Adds space between icon and title */
+}
+
+/* The computer emoji or icon in the header */
+.power-options-header-icon {
+    font-size: 36px; /* Render a large display size */
+}
+
+/* Heavy bold title mimicking the shutdown prompt text */
+.power-options-header-title {
+    font-weight: bold; /* Thicken font to show importance */
+}
+
+/* Horizontal flexbox containing the actual action buttons */
+.power-options-actions {
+    display: flex; /* Align the buttons in a row */
+    gap: 30px; /* Add a large wide gap between each option */
+    margin-top: 10px; /* Add breathing space from the elements above it */
+}
+
+/* The outer wrapper for each action (acts as a click target) */
+.power-action-wrapper {
+    display: flex; /* Handles button and label alignment */
+    flex-direction: column; /* Stacks button above its text label */
+    align-items: center; /* Center-aligns button with its text */
+    cursor: pointer; /* Visually indicates interactivity */
+}
+
+/* Standard HTML button heavily stylized to align with legacy GUI buttons */
+.power-action-btn {
+    padding: 4px 15px; /* Provides chunky button dimensions */
+    padding-right: 15px; /* Redundant rule but ensures rigid sizing */
+    display: flex; /* Used to insert icons nicely */
+    align-items: center; /* Center icon or text inside button */
+    gap: 8px; /* Space between icon and text if both exist */
+    cursor: pointer; /* Change pointer on hover */
+    font-family: "MS Sans Serif", Arial, sans-serif; /* Matches OS style */
+}
+
+/* Sleep/Restart green visual indicator */
+.power-action-btn-icon-green {
+    font-size: 16px; /* Icon size */
+    color: green; /* Overridden manually here if missing */
+}
+
+/* Shutdown red visual indicator */
+.power-action-btn-icon-red {
+    font-size: 16px; /* Match other icon sizes */
+    color: red; /* Force color to red to indicate a destructive or final action */
+}

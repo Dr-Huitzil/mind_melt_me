@@ -1,0 +1,183 @@
+/* =========================================================
+   RecycleBinWindow.css
+   Simulates classic Windows Recycle Bin interface.
+   ========================================================= */
+
+.rb-window-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #c0c0c0;
+}
+
+/* Menu Bar */
+.rb-menu-bar {
+    display: flex;
+    padding: 2px 0;
+}
+
+.rb-menu-item {
+    padding: 2px 8px;
+    cursor: pointer;
+    font-family: "MS Sans Serif", Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* Main Split Body */
+.rb-split-body {
+    display: flex;
+    flex: 1;
+    padding: 0 4px 4px 4px;
+    gap: 6px;
+    overflow: hidden;
+}
+
+.rb-pane-left {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 50%;
+    height: 100%;
+}
+
+.rb-pane-right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+
+/* Headers */
+.rb-header-row {
+    display: flex;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+.rb-header {
+    background-color: #c0c0c0;
+    padding: 2px 6px;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    font-family: "MS Sans Serif", Arial, sans-serif;
+    font-size: 12px;
+    cursor: default;
+    padding-left: 6px;
+}
+
+.rb-header-name {
+    width: 40%;
+}
+
+.rb-header-flex {
+    flex: 1;
+}
+
+/* Content Areas */
+.rb-content-area {
+    flex: 1;
+    background-color: #fff;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    overflow-y: auto;
+}
+
+.rb-preview-area {
+    flex: 1;
+    background-color: #fff;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    padding: 8px;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* List Items */
+.rb-list-item {
+    display: flex;
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    padding: 4px;
+    font-size: 12px;
+    font-family: "MS Sans Serif", Arial, sans-serif;
+}
+
+.rb-list-item.active {
+    background-color: #0000a8;
+    color: #fff;
+}
+
+.rb-col-name {
+    width: 40%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.rb-col-loc {
+    flex: 1;
+}
+
+/* Previews */
+.rb-preview-empty {
+    color: #808080;
+    font-style: italic;
+}
+
+.rb-preview-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border: 1px solid #000;
+}
+
+.rb-preview-text {
+    width: 100%;
+    height: 100%;
+    white-space: pre-wrap;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    color: #000;
+}
+
+.rb-preview-unknown {
+    color: #808080;
+    text-align: center;
+}
+
+.rb-preview-unknown-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.rb-preview-unknown-text {
+    font-family: "MS Sans Serif", Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* Status Bar */
+.rb-status-bar {
+    display: flex;
+    border-top: 1px solid #808080;
+    background-color: #c0c0c0;
+    padding: 2px 4px;
+    font-size: 11px;
+    gap: 2px;
+}
+
+.rb-status-panel {
+    width: 50%;
+    padding: 2px 4px;
+    font-family: "MS Sans Serif", Arial, sans-serif;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}

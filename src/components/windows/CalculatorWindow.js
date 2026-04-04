@@ -43,8 +43,8 @@ const CalculatorWindow = ({ onClose, onMinimize, zIndex, onFocus, minimized }) =
                     <button onClick={() => handleButtonClick('7')} className="calc-btn">7</button>
                     <button onClick={() => handleButtonClick('8')} className="calc-btn">8</button>
                     <button onClick={() => handleButtonClick('9')} className="calc-btn">9</button>
-                    <button onClick={() => handleButtonClick('DEL')} className="calc-btn">DEL</button>
-                    <button onClick={() => handleButtonClick('C')} className="calc-btn">CA</button>
+                    <button onClick={() => handleButtonClick('DEL')} className="calc-btn calc-btn-del">DEL</button>
+                    <button onClick={() => handleButtonClick('C')} className="calc-btn calc-btn-ca">CA</button>
 
                     <button onClick={() => handleButtonClick('4')} className="calc-btn">4</button>
                     <button onClick={() => handleButtonClick('5')} className="calc-btn">5</button>

@@ -1,0 +1,112 @@
+/* =========================================================
+   DialogBox.css
+   Simulates classic Windows OS error/alert dialogues.
+   ========================================================= */
+
+.dialog-box-container {
+    position: absolute;
+    width: 350px;
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    background-color: #c0c0c0;
+    box-shadow: inset 1px 1px #fff, inset -1px -1px #0a0a0a, inset 2px 2px #dfdfdf, inset -2px -2px #808080;
+    font-family: "MS Sans Serif", Arial, sans-serif;
+}
+
+.dialog-box-header {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: white;
+    padding: 2px 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.dialog-box-title {
+    font-size: 12px;
+    margin: 0;
+    padding-left: 2px;
+}
+
+.dialog-box-close-btn {
+    width: 16px;
+    height: 14px;
+    background-color: #c0c0c0;
+    color: black;
+    border: 1px solid #fff;
+    border-bottom-color: #0a0a0a;
+    border-right-color: #0a0a0a;
+    font-weight: bold;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.dialog-box-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    color: black;
+}
+
+.dialog-box-content {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.dialog-box-text {
+    font-size: 13px;
+    line-height: 1.4;
+    padding-top: 0px;
+}
+
+.dialog-box-text.with-icon {
+    padding-top: 6px;
+}
+
+.dialog-box-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: auto;
+    padding-bottom: 5px;
+}
+
+.dialog-box-btn {
+    min-width: 75px;
+    padding: 4px 8px;
+    cursor: pointer;
+    background-color: #c0c0c0;
+    border: 1px solid #fff;
+    border-bottom-color: #0a0a0a;
+    border-right-color: #0a0a0a;
+    box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+/* Icons */
+.dialog-icon {
+    font-size: 32px;
+    margin-right: 15px;
+}
+
+.dialog-icon-error {
+    color: red;
+}
+
+.dialog-icon-question {
+    color: #00a800;
+}
+
+.dialog-icon-info {
+    color: #0000a8;
+}
