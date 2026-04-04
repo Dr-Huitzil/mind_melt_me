@@ -44,7 +44,7 @@ const Desktop = ({ wallpaper }) => {
             const saved = localStorage.getItem('desktopIconPositions');
             if (saved) {
                 const parsed = JSON.parse(saved);
-                if (typeof parse === 'object' && parsed !== null && !Array.isArray(parsed)) {
+                if (typeof parsed === 'object' && parsed !== null && !Array.isArray(parsed)) {
                     return parsed;
                 }
                 console.warn("Security/Format Warnings: Desktop 'desktopIconPositions' storage mapping is malicious or corrupt. Automatically resetting to default");
@@ -99,8 +99,8 @@ const Desktop = ({ wallpaper }) => {
                 <DesktopIcon
                     key={app.id}
                     id={app.id}
-                    name={app.name}
-                    icon={app.icon}
+                    name={app.displayName}
+                    icon={app.desktopIcon}
                     onClick={handleIconClick}
                     initialPosition={iconPositions[app.id] || { x: 0, y: 0 }}
                     onDragStop={handleDragStop}
