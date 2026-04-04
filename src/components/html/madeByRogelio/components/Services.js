@@ -4,11 +4,11 @@ const Services = () => (
     <>
         <p>Core Competencies.</p>
         <hr className="section-divider" />
-        <img className="intro about-image" src="https://i.imgur.com/dA9K3Er.gif" alt="Animated introduction image" />
+        <img className="intro about-image" src="https://i.imgur.com/dA9K3Er.gif" alt="Animated introduction" />
         <p></p>
         <img
             src="https://i.imgur.com/WuLc9Oe.jpeg"
-            alt="Picture of Rogelio Mendoza Polaroid"
+            alt="Rogelio Mendoza Polaroid"
             style={{ maxWidth: '150px', maxHeight: '150px', width: 'auto', height: 'auto' }}
             srcSet="https://i.imgur.com/WuLc9Oe.jpeg 1x, https://i.imgur.com/WuLc9Oe.jpg 2x"
             loading="lazy" />

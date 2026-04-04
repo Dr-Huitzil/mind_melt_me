@@ -63,7 +63,7 @@ export const useWindowBounds = (defaultSize) => {
                 isMaximized: false
             }));
         }
-    }, [state.isMaximized, preMaximizeState, defaultSize]);
+    }, [state.isMaximized, preMaximizeState, defaultSize, state.position, state.size]);
 
     const handleDragStop = useCallback((e, data) => {
         setState(prev => ({

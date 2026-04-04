@@ -4,14 +4,14 @@ const Home = () => (
     <>
         <p>From California, USA comes:</p>
 
-        <img className="intro about-image" src="https://i.imgur.com/Yxwum0n.gif" alt="90s-style animated name image" width="500" height="auto" />
+        <img className="intro about-image" src="https://i.imgur.com/Yxwum0n.gif" alt="90s-style animated name" width="500" height="auto" />
 
         <h2 id="working">B.S in Business Administration</h2>
         <h2 id="made">Marketing Concentration</h2>
         <p>Don't get stuck in the past like this website, embrace innovation and growth.</p>
 
         <hr className="section-divider" />
-        <img className="intro about-image" src="https://i.imgur.com/eRgs4lr.gif" alt="90s-style animated name image" />
+        <img className="intro about-image" src="https://i.imgur.com/eRgs4lr.gif" alt="90s-style animated name" />
         <p> </p>
         <img
             src="https://media.licdn.com/dms/image/v2/D5603AQFSek8jm-lyEA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1691819953944?e=1744243200&v=beta&t=O8XTzcJ9ROOY8icw7VwiF-ZqNwx6xFw545dOdfGN7pk"
@@ -23,7 +23,7 @@ const Home = () => (
 
         <p className="summary">For me, marketing is about storytelling, building genuine connections, and driving impactful results. But unlike this website, marketing is about evolving with the times and embracing what’s next, rather than longing for the past. Let’s collaborate and infuse fresh energy into your brand’s future!</p>
         <hr className="section-divider" />
-        <img className="intro about-image" src="https://i.imgur.com/kcsSBnG.gif" alt="90s-style animated name image" />
+        <img className="intro about-image" src="https://i.imgur.com/kcsSBnG.gif" alt="90s-style animated name" />
 
         <div id="instagram-links">
             <div className="instagram">
@@ -48,6 +48,7 @@ const Home = () => (
                 </ul>
                 <div className="image-gallery" id="osu-gallery">
                     <iframe
+                        title="Instagram Post 1"
                         src="https://www.instagram.com/p/C8U9JKASJG9/embed"
                         allowTransparency="true"
                         frameBorder="0"
@@ -55,6 +56,7 @@ const Home = () => (
                         style={{ width: '200px', height: '300px' }}>
                     </iframe>
                     <iframe
+                        title="Instagram Post 2"
                         src="https://www.instagram.com/p/C5RzJiGvx3S/embed"
                         allowTransparency="true"
                         frameBorder="0"
@@ -62,6 +64,7 @@ const Home = () => (
                         style={{ width: '200px', height: '300px' }}>
                     </iframe>
                     <iframe
+                        title="Instagram Post 3"
                         src="https://www.instagram.com/p/C37-gOYxVy_/embed"
                         allowTransparency="true"
                         frameBorder="0"
@@ -78,6 +81,7 @@ const Home = () => (
                 </ul>
                 <div className="image-gallery" id="mind-gallery">
                     <iframe
+                        title="Instagram Post 4"
                         src="https://www.instagram.com/p/DDtWjlnRCjG/embed"
                         allowTransparency="true"
                         frameBorder="0"
@@ -85,6 +89,7 @@ const Home = () => (
                         style={{ width: '200px', height: '300px' }}>
                     </iframe>
                     <iframe
+                        title="Instagram Post 5"
                         src="https://www.instagram.com/p/DBUKP9uyStu/embed"
                         allowTransparency="true"
                         frameBorder="0"
@@ -92,6 +97,7 @@ const Home = () => (
                         style={{ width: '200px', height: '300px' }}>
                     </iframe>
                     <iframe
+                        title="Instagram Post 6"
                         src="https://www.instagram.com/p/C8yQ6aXRkA-/embed"
                         allowTransparency="true"
                         frameBorder="0"
@@ -104,7 +110,7 @@ const Home = () => (
         <hr className="section-divider" />
 
         <div id="carousel-section">
-            <img className="intro about-image" src="https://i.imgur.com/WF2ZR0t.gif" alt="90s-style animated name image" />
+            <img className="intro about-image" src="https://i.imgur.com/WF2ZR0t.gif" alt="90s-style animated name" />
             <ul>
                 <li>Made using Adobe Illustrator</li>
                 <li>(Click To View Full Image)</li>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Preloader from './components/Prelaoder';
 import Desktop from './components/Desktop';
 import Taskbar from './components/Taskbar';
