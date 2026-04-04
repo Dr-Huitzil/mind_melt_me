@@ -42,7 +42,7 @@ export const appsConfig = {
 
 // derived lists for UI mapping
 export const desktopIcons = Object.values(appsConfig).filter(app => app.showOnDesktop);
-export const startMenuApps = Object.values(appsConfig).filter(app => app.showInStartMenu);
+export const startMenuItems = Object.values(appsConfig).filter(app => app.showInStartMenu);
 
 // quick lookup mapping for the app container to find which component to render
 // it relies on mapping he actual react component to teh `windowName` variable passed to context.
