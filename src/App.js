@@ -3,9 +3,9 @@ import Preloader from './components/Prelaoder';
 import Desktop from './components/Desktop';
 import Taskbar from './components/Taskbar';
 import './styles/global.css';
-import { useWindowState, useWindowActions } from './contexts/WindowContext'
+import { useWindowState, useWindowActions } from './contexts/WindowContext';
 
-import { windowComponentMap } from './config/apps.config';
+import { windowComponentsMap } from './config/apps.config';
 import ErrorBoundary from './components/ErrorBoundary';
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
     handleFocusWindow
   } = useWindowActions();
 
-  // Custom dynamic wallpaper
+  // Custom Dynamic Wallpaper
   const [wallpaper, setWallpaper] = useState(localStorage.getItem('desktopWallpaper') || null);
 
   useEffect(() => {
@@ -30,18 +30,18 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  //Persist wallpaper updates
+  // Persist wallpaper updates
   useEffect(() => {
     if (wallpaper) {
-      //only update if the wallpaper is valid
+      // Only update if wallpaper is valid
       localStorage.setItem('desktopWallpaper', wallpaper);
     }
   }, [wallpaper]);
 
-  // dynamic app rendering
+  // DYNAMIC APP RENDERING:
   const renderWindows = () => {
     return runningApps.map(app => {
-      const Component = windowComponentMap[app.name];
+      const Component = windowComponentsMap[app.name];
 
       if (!Component) return null;
 
@@ -66,15 +66,16 @@ const App = () => {
 
   return (
     <div>
-      {/* Boot loading screen */}
+      {/* Boot screen sequence */}
       {loading && <Preloader />}
 
       {!loading && (
         <div>
           <Desktop wallpaper={wallpaper} />
+
           <Taskbar />
 
-          {/* Render component registry dynamically */}
+          {/* Render our component registry dynamically */}
           <Suspense fallback={null}>
             {renderWindows()}
           </Suspense>
