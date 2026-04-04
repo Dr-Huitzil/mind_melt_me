@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useWindowState, useWindowActions } from '../contexts/WindowContext';
-import '../styles/Taskbar.css'
-import Clock from "./Clock";
+import '../styles/Taskbar.css';
+import Clock from './Clock';
 import { startMenuItems } from '../config/apps.config';
 
 const Taskbar = () => {
-    const { runningApp } = useWindowState();
+    const { runningApps } = useWindowState();
     const { handleOpenWindow, handleMinimizeWindow } = useWindowActions();
 
-    //state for start menu visibility
+    //State for start menu visibility
     const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
     const [showAllApps, setShowAllApps] = useState(false);
     const startMenuRef = useRef(null);
@@ -29,12 +29,13 @@ const Taskbar = () => {
     };
 
 
+
     //Toggle start menu visibility
     const toggleStartMenu = () => {
         setIsStartMenuOpen(!isStartMenuOpen);
-    }
+    };
 
-    //Close start menu on click outside
+    //Close Start Menu on click outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (isStartMenuOpen &&
@@ -47,6 +48,8 @@ const Taskbar = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [isStartMenuOpen]);
+
+
 
     return (
         <div className="taskbar-container">
@@ -65,7 +68,7 @@ const Taskbar = () => {
 
                 {/* running apps */}
                 <div className="taskbar-icons">
-                    {runningApp.map((app) => (
+                    {runningApps.map((app) => (
                         <button
                             key={app.id}
                             className={`taskbar-icon ${app.minimized ? '' : 'active'}`}
@@ -93,9 +96,8 @@ const Taskbar = () => {
             {isStartMenuOpen && (
                 <div className="start-menu" ref={startMenuRef}>
                     <div className="start-strip">
-                        <div className="start-strip-rotate">Mind Melt OS </div>
+                        <div className="start-strip-rotate">Mind Melt OS</div>
                     </div>
-
                     <div className="start-menu-text">
 
                         <div
@@ -104,7 +106,6 @@ const Taskbar = () => {
                             onMouseLeave={() => setShowAllApps(false)}
                             aria-expanded={showAllApps}
                         >
-
                             <span className="menu-icon">📁</span>
                             <span className="menu-text" style={{ fontWeight: 'bold' }}>Programs</span>
                             <span className="submenu-arrow">▶</span>
@@ -117,9 +118,8 @@ const Taskbar = () => {
                                             className="menu-child"
                                             onClick={() => handleLaunch(app.windowName, app.props || {})}
                                         >
-
                                             <span className="menu-icon">{app.taskbarIcon}</span>
-                                            <span className="menu-icon">{app.displayName}</span>
+                                            <span className="menu-text">{app.displayName}</span>
                                         </div>
                                     ))}
                                 </div>

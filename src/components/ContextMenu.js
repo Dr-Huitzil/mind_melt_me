@@ -3,14 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/ContextMenu.css';
 
-const ContextMenu = ({ position, visible, onClose, onNewShortcut }) => {
+const ContextMenu = ({ position, visible, onClose, onDisplaySettings }) => {
     if (!visible) {
         return null;
     }
 
     return (
         <div className="context-menu" style={{ top: position.y, left: position.x }}>
-            <div className="context-menu-item" onClick={onNewShortcut}>New Shortcut</div>
+            <div className="context-menu-item" onClick={onDisplaySettings}>Display Settings</div>
             <div className="context-menu-item" onClick={onClose}>Close</div>
         </div>
     );
@@ -23,7 +23,7 @@ ContextMenu.propTypes = {
     }).isRequired,
     visible: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
-    onNewShortcut: PropTypes.func.isRequired,
+    onDisplaySettings: PropTypes.func.isRequired,
 };
 
 export default ContextMenu;
