@@ -1,0 +1,317 @@
+/* =========================================
+   GLOBAL FOUNDATION STYLES
+   Affects: ALL PAGES
+   ========================================= */
+
+/* The primary wrapper class that scopes ALL 90s aesthetic styles so they do not bleed into the host application. */
+.made-by-rogelio-wrapper {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Comic Sans MS", sans-serif; /* Forces the retro Comic Sans look universally */
+  line-height: 1.4;
+  margin: 0 auto; /* Centers the component block */
+  min-height: 100vh; /* Fills standard window bounds */
+  cursor: url('https://i.imgur.com/jvGieha.png') 16 16, auto; /* Custom 90s cursor */
+  text-align: center;
+  background-color: #000;
+  color: yellow; /* Iconic high-contrast yellow text */
+  position: relative; /* Allows absolute positioning for internal elements like the clock */
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Enforces border-box sizing on all nested elements to prevent padding overflow issues */
+.made-by-rogelio-wrapper * {
+  box-sizing: border-box;
+}
+
+/* Default state for all hyperlinks */
+.made-by-rogelio-wrapper a {
+  color: yellow;
+  text-decoration: underline;
+  cursor: url('https://i.imgur.com/jvGieha.png'), auto;
+}
+
+/* Hover state for all hyperlinks */
+.made-by-rogelio-wrapper a:hover {
+  color: orange;
+  text-decoration: underline;
+  cursor: url('https://i.imgur.com/jvGieha.png'), auto;
+}
+
+/* Utility to center text (used dynamically globally) */
+.made-by-rogelio-wrapper.center {
+  text-align: center;
+}
+
+/* Enforces maximum bounding width to match the original 860px retro constraints */
+.made-by-rogelio-wrapper.max {
+  display: block;
+  width: 100%;
+  max-width: 860px;
+  word-wrap: break-word; /* Prevents text from pushing outside the 860px limit */
+}
+
+/* Large introductory font sizing (used primarily on Animated GIF Headers) */
+.made-by-rogelio-wrapper .intro {
+  font-size: 4em;
+}
+
+/* =========================================
+   GLOBAL BACKGROUNDS
+   Affects: ALL PAGES (Depends on applied class)
+   ========================================= */
+
+/* Background class 1: used originally for testing or specific pages */
+.made-by-rogelio-wrapper.bg1 { background-image: url("https://i.imgur.com/YUPql5N.gif"); }
+
+/* Background class 2: The standard "stars" background deployed universally! */
+.made-by-rogelio-wrapper.bg2 { background-image: url("https://i.imgur.com/SHZe50s.gif"); }
+
+
+/* =========================================
+   GLOBAL TYPOGRAPHY & TAGS
+   Affects: ALL PAGES
+   ========================================= */
+
+/* Fixes default coloring for semantic HTML text tags to be globally yellow */
+.made-by-rogelio-wrapper h1, 
+.made-by-rogelio-wrapper h2, 
+.made-by-rogelio-wrapper h3, 
+.made-by-rogelio-wrapper p {
+  color: yellow;
+}
+
+/* The red dividing line character '|' in the Navigation bar */
+.made-by-rogelio-wrapper span.line {
+  color: red;
+}
+
+/* Creates the iconic 90s pulsing blink effect (Used on Page Titles) */
+.made-by-rogelio-wrapper .blink {
+  animation: blink 0.75s linear infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* Establishes the main content area (div id="main") height to dynamically push Footer to the bottom */
+.made-by-rogelio-wrapper #main {
+  min-height: 90vh;
+}
+
+/* Universal Red Line Section Divider `<hr>` */
+.made-by-rogelio-wrapper .section-divider {
+  border: none;
+  height: 2px;
+  background-color: red;
+  width: 50%;
+  margin: 20px auto;
+}
+
+
+/* =========================================
+   NAVIGATION BAR (<Navigation />)
+   Affects: ALL PAGES
+   ========================================= */
+
+.made-by-rogelio-wrapper h4 a {
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+  margin: 0 5px; /* Spaces out the Navigation links softly */
+}
+
+/* Hover bounce effect for navigation links */
+.made-by-rogelio-wrapper h4 a:hover {
+  transform: scale(1.2) translateY(-5px); /* Zooms in and moves slightly up */
+}
+
+/* Click styling reset */
+.made-by-rogelio-wrapper h4 a:active {
+  transform: scale(1) translateY(0); 
+}
+
+
+/* =========================================
+   WORLD CLOCK (<WorldClock />)
+   Affects: ALL PAGES
+   ========================================= */
+
+/* The wrapper that pins the clock to the absolute top-right of the window */
+.made-by-rogelio-wrapper #world-clock-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 100; /* Forces the clock to always stack above text/images */
+  padding: 2px;
+}
+
+/* Specialized internal wrapper box around the iframe clock itself */
+.made-by-rogelio-wrapper #world-clock {
+  border: 3px solid #ffff00;
+  padding: 10px;
+  width: 40%;
+  margin: 10px auto 5px auto;
+}
+
+
+/* =========================================
+   PAGE SPECIFIC: <Home /> & <Services />
+   Affects: HOME.JS, SERVICES.JS
+   ========================================= */
+
+/* Custom margin for the H2 subtitles on Home & Services */
+.made-by-rogelio-wrapper h2 {
+  margin: 5px 0;
+  color: yellow;
+}
+
+/* Dark black highlight boxes behind summary text blocks to improve readability against the stars */
+.made-by-rogelio-wrapper .summary {
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: left; /* Anchors the paragraphs flatly */
+}
+
+/* Instagram Logo Clickable Images (Home.js & Services.js) */
+.made-by-rogelio-wrapper .instagram a img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  box-shadow: none;
+  border: 2px solid yellow;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Bounce effect for the Instagram logos */
+.made-by-rogelio-wrapper .instagram a img:hover {
+  transform: translateY(-10px);
+}
+
+/* Container locking the two instagram link groups side-by-side */
+.made-by-rogelio-wrapper #instagram-links {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px 0;
+  position: relative;
+}
+
+/* Creates a sharp white vertical dividing line right down the center of the Instagram links */
+.made-by-rogelio-wrapper #instagram-links::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: white;
+  transform: translateX(-50%);
+}
+
+/* Styling for unordered lists (used under "Notable Posts") */
+.made-by-rogelio-wrapper ul {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  list-style: none; /* Strips standard bullet points */
+  padding: 0;
+}
+
+.made-by-rogelio-wrapper ul li {
+  color: yellow;
+  font-size: 14px;
+}
+
+/* Layout for the embedded Instagram iframe galleries */
+.made-by-rogelio-wrapper .projects {
+  text-align: center;
+  padding: 0 10px;
+}
+
+
+/* =========================================
+   CAROUSEL GALLERY (ILLUSTRATOR DESIGNS)
+   Affects: HOME.JS
+   ========================================= */
+
+.made-by-rogelio-wrapper #carousel-section {
+  margin: 30px 0;
+}
+
+/* Organizes the image blocks into a dynamic flexible row */
+.made-by-rogelio-wrapper .carousel {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+/* Visual aesthetics for individual carousel images (cyan/orange layered 3D shadows) */
+.made-by-rogelio-wrapper .carousel-item img {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  box-shadow: 
+    5px 5px 0px red,
+    10px 10px 0px orange;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Elevates and slightly enlarges images smoothly on hover */
+.made-by-rogelio-wrapper .carousel-item img:hover {
+  transform: scale(1.1) translateY(-5px);
+}
+
+/* Spacing between multiple rows of carousels */
+.made-by-rogelio-wrapper #carousel-section .carousel + .carousel {
+  margin-top: 20px;
+}
+
+
+/* =========================================
+   PAGE SPECIFIC: <Contact />
+   Affects: CONTACT.JS
+   ========================================= */
+
+/* Bright red donation button for Doctors Without Borders */
+.made-by-rogelio-wrapper .donate-btn {
+  background-color:  #FF0000;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  border: none;
+}
+
+/* Slight zoom effect when hovering the donation button */
+.made-by-rogelio-wrapper .donate-btn:hover {
+  transform: scale(1.05);
+}
+
+/* The secretive embedded YouTube button pinned to the absolute bottom left */
+.made-by-rogelio-wrapper #hidden-button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px; /* Locked locally to the bottom-left of the React Component envelope */
+  padding: 10px 15px;
+  background-color: #333; /* Camouflaged dark gray */
+  color: white;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  z-index: 999;
+}
+
+/* Subtle visual feedback when hovering the hidden button */
+.made-by-rogelio-wrapper #hidden-button:hover {
+  background-color: #555;
+}

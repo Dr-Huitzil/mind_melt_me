@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import WindowFrame from './WindowFrame';
 import '../../styles/windows/about.css';
 import MindMelt from '../html/mind-melt';
+import MadeByRogelio from '../html/madeByRogelio/madeByRogelio';
 
 const About = ({ onClose, onMinimize, zIndex, onFocus, minimized }) => {
     const [activeTab, setActiveTab] = useState('mind-melt');
 
     const tabs = [
         { id: 'mind-melt', label: 'Mind Melt' },
-        { id: 'members', label: 'Members' }
+        { id: 'Rogelio', label: 'Rogelio' }
     ];
 
     //Refactor: MenuBarItems are passed directly to the windowFrame which handles rendering
@@ -43,10 +44,8 @@ const About = ({ onClose, onMinimize, zIndex, onFocus, minimized }) => {
                 <MindMelt />
             )}
 
-            {activeTab === 'members' && (
-                <div className='no-padding'>
-                    <h2>Meet the Team</h2>
-                </div>
+            {activeTab === 'Rogelio' && (
+                <MadeByRogelio />
             )}
         </WindowFrame>
     );
