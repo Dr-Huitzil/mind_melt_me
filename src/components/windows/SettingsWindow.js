@@ -28,8 +28,14 @@ const SettingsWindow = ({ onClose, onMinimize, zIndex, onFocus, minimized, setWa
         onClose();
     };
 
-    const handlePasswordSubmit = () => {
-        if (passwordInput === process.env.REACT_APP_ADMIN_PASSWORD) {
+    const handlePasswordSubmit = async () => {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(passwordInput);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+        if (hashHex === 'af45b9700bb0b00ef1b2f371e50c2eeae17e385748ed517cb25525ec2d6dab4a') {
             setIsUnlocked(true);
             setShowPasswordPrompt(false);
             setCustomUrl(selectedPreset.url); // Pre-fill with current selection if unlocked
